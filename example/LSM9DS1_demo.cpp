@@ -7,43 +7,17 @@
 #include "LSM9DS1_Types.h"
 #include "LSM9DS1.h"
 
-float prevValX = 0;
-float prevValY = 0;
+float prevVelValX, prevVelValY, prevPosValX, prevPosValY, calcVelX, calcVelY, calcPosX, calcPosY = 0;
 
 /**
-  Calculates the velocity baseed on accelerometer measurements.
-  @param accel the value of the acceleration measurement.
-  @param dT the elapsed time between the accelerometer readings.
-  @param prevVel the previous value of the velocity
-  @return the calculated velocity
-*/
-float calcVel(float accel, float dT, float prevVel) {
-    float  v = prevVel + accel*dT;
-    return v;
-}
-
-/**
-  Gets the previous value for the x-velovity.
-  @return the previous value for the velocity in x.
-*/
-float prevVelX() {
-    if (prevValX == 0){
-	return 0;
-    } else {
-	return prevValX;
-    }
-}
-
-/**
-  Gets the previous value for the y-velovity.
-  @return the previous value for the velocity in y.
-*/
-float prevVelY() {
-    if (prevValY == 0){
-	return 0;
-    } else {
-	return prevValY;
-    }
+ * Integrates the input value
+ * @param val the value that should be integrated.
+ * @param dT the elapsed time between the measured readings.
+ * @param prevVal the previously integrated value from the measurements.
+ * @return the calculated integral.
+ */
+float integrate(float val, float dT, float prevVal) {
+    return  val*dT + prevVal;
 }
 
 class LSM9DS1printCallback : public LSM9DS1callback {
@@ -56,9 +30,15 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 			       float mx,
 			       float my,
 			       float mz) {
-		printf("Velocity: %f, %f [m/s]\n", calcVel(ax, 0.1, prevVelX()), calcVel(ay, 0.1, prevVelY()));
-		prevValX = ax;
-		prevValY = ay;
+		calcVelX = integrate(ax, 0.1, prevVelValX);
+		calcVelY = integrate(ay, 0.1, prevVelValY);
+		calcPosX = integrate(calcVelX, 0.1, prevPosValX);
+		calcPosY = integrate(calcVelY, 0.1, prevPosValY);
+		printf("Position: %f, %f [m]\n", calcPosX, calcPosY);
+		prevVelValX = calcVelX;
+		prevVelValY = calcVelY;
+		prevPosValX = calcPosX;
+		prevPosValY = calcPosY;	
 	}
 };
 
