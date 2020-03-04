@@ -6,8 +6,12 @@
 #include <unistd.h>
 #include "LSM9DS1_Types.h"
 #include "LSM9DS1.h"
+#include "Iir.h"
+#include "Filter.h"
 
-float prevVelValX, prevVelValY, prevPosValX, prevPosValY, calcVelX, calcVelY, calcPosX, calcPosY = 0;
+float accelX, accelY, prevVelValX, prevVelValY, prevPosValX, prevPosValY, calcVelX, calcVelY, calcPosX, calcPosY = 0;
+float dT = 0.0084033613; // i.e. 1/119, why doesn't it allow 1/119?
+
 
 /**
  * Integrates the input value
@@ -30,10 +34,13 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 			       float mx,
 			       float my,
 			       float mz) {
-		calcVelX = integrate(ax, 0.1, prevVelValX);
-		calcVelY = integrate(ay, 0.1, prevVelValY);
-		calcPosX = integrate(calcVelX, 0.1, prevPosValX);
-		calcPosY = integrate(calcVelY, 0.1, prevPosValY);
+		//accelX = f.filter(ax);
+		//accelY = f.filter(ay);
+		
+		calcVelX = integrate(ax, dT, prevVelValX);
+		calcVelY = integrate(ay, dT, prevVelValY);
+		calcPosX = integrate(calcVelX, dT, prevPosValX);
+		calcPosY = integrate(calcVelY, dT, prevPosValY);
 		printf("Position: %f, %f [m]\n", calcPosX, calcPosY);
 		prevVelValX = calcVelX;
 		prevVelValY = calcVelY;

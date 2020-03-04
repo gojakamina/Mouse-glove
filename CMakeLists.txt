@@ -7,16 +7,21 @@ endif()
 project(LSM9DS1_RaspberryPi_Library LANGUAGES CXX)
 include(GNUInstallDirs)
 add_subdirectory(example)
+add_subdirectory(lib/googletest)
+
+include_directories(example)
 
 # add_compile_options(-Wall -Wconversion -Wextra -pedantic)
 
 set(LIBSRC LSM9DS1.cpp)
-set(LIBINCLUDE LSM9DS1.h LSM9DS1_Registers.h LSM9DS1_Types.h)
+set(LIBINCLUDE LSM9DS1.h LSM9DS1_Registers.h LSM9DS1_Types.h Filter.h)
 
 add_library(lsm9ds1
   SHARED
   ${LIBSRC}
   )
+
+
 
 set_target_properties(lsm9ds1 PROPERTIES
   SOVERSION 1
