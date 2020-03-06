@@ -1,1 +1,0 @@
-/usr/bin/c++  -O2 -g -DNDEBUG  -rdynamic CMakeFiles/LSM9DS1_demo.dir/LSM9DS1_demo.cpp.o  -o LSM9DS1_demo -Wl,-rpath,/home/pi/Mouse-glove:/usr/local/lib ../liblsm9ds1.so.1 -lrt /usr/local/lib/libiir.so.1.7.7 -lwiringPi 
