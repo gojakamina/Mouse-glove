@@ -6,12 +6,10 @@
 #include <unistd.h>
 #include "LSM9DS1_Types.h"
 #include "LSM9DS1.h"
-#include "Iir.h"
 #include "Filter.h"
 
 float accelX, accelY, prevVelValX, prevVelValY, prevPosValX, prevPosValY, calcVelX, calcVelY, calcPosX, calcPosY = 0;
-float dT = 0.0084033613; // i.e. 1/119, why doesn't it allow 1/119?
-
+float dT = 0.0084033613;
 
 /**
  * Integrates the input value
@@ -24,6 +22,13 @@ float integrate(float val, float dT, float prevVal) {
     return  val*dT + prevVal;
 }
 
+// sampling rate 119 and cutoff frequency 3
+const float samplingrate = 119;
+const float cutoff_frequency = 3;
+
+// filter order is determined in the class found in Filter.h, should be changed
+Filter f(samplingrate, cutoff_frequency);
+
 class LSM9DS1printCallback : public LSM9DS1callback {
 	virtual void hasSample(float gx,
 			       float gy,
@@ -34,6 +39,17 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 			       float mx,
 			       float my,
 			       float mz) {
+				       
+		// applying Butterworth filter on measured data
+		accelX = f.filterData(ax);
+		accelY = f.filterData(ay);
+		
+		// integrating acceleration twice to get the position
+		calcVelX = integrate(accelX, dT, prevVelValX);
+		calcVelY = integrate(accelY, dT, prevVelValY);
+		calcPosX = integrate(calcVelX, dT, prevPosValX);
+		calcPosY = integrate(calcVelY, dT, prevPosValY);
+		
 		//accelX = f.filter(ax);
 		//accelY = f.filter(ay);
 		
@@ -41,7 +57,10 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 		calcVelY = integrate(ay, dT, prevVelValY);
 		calcPosX = integrate(calcVelX, dT, prevPosValX);
 		calcPosY = integrate(calcVelY, dT, prevPosValY);
+
 		printf("Position: %f, %f [m]\n", calcPosX, calcPosY);
+		
+		// saving current velocity + position to use in future integration
 		prevVelValX = calcVelX;
 		prevVelValY = calcVelY;
 		prevPosValX = calcPosX;
