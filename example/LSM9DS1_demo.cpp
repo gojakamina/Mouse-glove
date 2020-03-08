@@ -4,12 +4,14 @@
 #include <time.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <cmath>
 #include "LSM9DS1_Types.h"
 #include "LSM9DS1.h"
 #include "Filter.h"
 
-float accelX, accelY, prevVelValX, prevVelValY, prevPosValX, prevPosValY, calcVelX, calcVelY, calcPosX, calcPosY = 0;
+float filtAx, filtAy, prevVelValX, prevVelValY, prevPosValX, prevPosValY, calcVelX, calcVelY, calcPosX, calcPosY, sumX, sumY = 0;
 float dT = 0.0084033613;
+float conv = 0.10197162129779;
 
 /**
  * Integrates the input value
@@ -22,12 +24,15 @@ float integrate(float val, float dT, float prevVal) {
     return  val*dT + prevVal;
 }
 
-// sampling rate 119 and cutoff frequency 3
+// sampling rate and frequencies for filtering
 const float samplingrate = 119;
-const float cutoff_frequency = 3;
+const float lower_frequency = 0.1;
+const float upper_frequency = 30;
+const float cutoff_frequency = 1;
 
 // filter order is determined in the class found in Filter.h, should be changed
-Filter f(samplingrate, cutoff_frequency);
+Filter bandpass(samplingrate, lower_frequency, upper_frequency);
+Filter highpass(samplingrate, cutoff_frequency);
 
 class LSM9DS1printCallback : public LSM9DS1callback {
 	virtual void hasSample(float gx,
@@ -39,22 +44,17 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 			       float mx,
 			       float my,
 			       float mz) {
-				       
-		// applying Butterworth filter on measured data
-		accelX = f.filterData(ax);
-		accelY = f.filterData(ay);
 		
-		// integrating acceleration twice to get the position
-		calcVelX = integrate(accelX, dT, prevVelValX);
-		calcVelY = integrate(accelY, dT, prevVelValY);
-		calcPosX = integrate(calcVelX, dT, prevPosValX);
-		calcPosY = integrate(calcVelY, dT, prevPosValY);
-		
-		//accelX = f.filter(ax);
-		//accelY = f.filter(ay);
-		
-		calcVelX = integrate(ax, dT, prevVelValX);
-		calcVelY = integrate(ay, dT, prevVelValY);
+		// applying Butterworth filter on measured data and converting unit from g to m/(s*s)
+		filtAx = bandpass.bpFilter(ax)*conv;
+		filtAy = bandpass.bpFilter(ay)*conv;
+
+		// integrating acceleration twice to get the position, velocity is high pass filtered
+		calcVelX = integrate(filtAx, dT, prevVelValX);
+		calcVelX = highpass.hpFilter(calcVelX);
+		calcVelY = integrate(filtAy, dT, prevVelValY);
+		calcVelY = highpass.hpFilter(calcVelY);
+
 		calcPosX = integrate(calcVelX, dT, prevPosValX);
 		calcPosY = integrate(calcVelY, dT, prevPosValY);
 
@@ -64,7 +64,7 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 		prevVelValX = calcVelX;
 		prevVelValY = calcVelY;
 		prevPosValX = calcPosX;
-		prevPosValY = calcPosY;	
+		prevPosValY = calcPosY;
 	}
 };
 
