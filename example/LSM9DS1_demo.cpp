@@ -9,30 +9,83 @@
 #include "LSM9DS1.h"
 #include "Filter.h"
 
-float filtAx, filtAy, prevVelValX, prevVelValY, prevPosValX, prevPosValY, calcVelX, calcVelY, calcPosX, calcPosY, sumX, sumY = 0;
-float dT = 0.0084033613;
-float conv = 0.10197162129779;
+float currAccZ, currAccY, currVelZ, currVelY, currPosZ, currPosY, prevAccZ, prevAccY, prevVelZ, prevVelY, prevPosZ, prevPosY = 0;
+float dT = 0.01;
+float conv = 9.80665;
+float thresh  = 0.06;;
+int countZ, countY = 0;
 
-/**
- * Integrates the input value
- * @param val the value that should be integrated.
- * @param dT the elapsed time between the measured readings.
- * @param prevVal the previously integrated value from the measurements.
- * @return the calculated integral.
- */
-float integrate(float val, float dT, float prevVal) {
-    return  val*dT + prevVal;
-}
 
-// sampling rate and frequencies for filtering
-const float samplingrate = 119;
-const float lower_frequency = 0.1;
-const float upper_frequency = 30;
-const float cutoff_frequency = 1;
+// sampling rate and frequencies for filtering high frequencies
+const float samplingrate = 100;
+const float cutoff_frequency = 5;
 
 // filter order is determined in the class found in Filter.h, should be changed
-Filter bandpass(samplingrate, lower_frequency, upper_frequency);
-Filter highpass(samplingrate, cutoff_frequency);
+Filter lowpass(samplingrate, cutoff_frequency);
+
+
+/**
+ * Threshold used for accelerometer data. Prevents values lower than a specified limit.
+ * If the threshold is reached the data will be filtered.
+ * @param value the input value that should be processed.
+ * @param thresh the threshold value.
+ * @return 0 if the value doesn't reach threshold, otherwise return filtered value.
+ */
+float thresholdOrFilt(float value, float thresh) {
+	if( value < thresh && value > -thresh) {return 0;}
+	else {return lowpass.lpFilter(value);}
+}
+
+
+/**
+ * Threshold used for velocity data. Prevents drift and acts as a high pass filter.
+ * If the value doesn't reach threshold, both the current value and previous will be set to 0.
+ * @param value the input value that should be checked.
+ * @param prev the previous value corresponding to the input value.
+ * @thresh the threshold value.
+ */
+void threshold(float& value, float& prev, float thresh) {
+	if(value < thresh && value > - thresh) {
+		value = 0;
+		prev = 0;
+	}
+}
+
+/**
+ * Integrates the input value with the trapezoidal method.
+ * @param val0 the initial value.
+ * @param curr the current value with unit that needs to be integrated.
+ * @param prev the previous value with unit that needs to be integrated.
+ * @param dT the elapsed time between the measured readings.
+ * @return the calculated integral.
+ */
+float integrate(float val0, float curr, float prev, float dT) {
+    return val0 + dT*(curr+prev)*0.5;
+}
+
+
+/**
+ * Counts number of times that acceleration has been zero.
+ * @param count the counter that is checked.
+ * @param accel the value of the current acceleration.
+ */
+void counter(int& count, float accel) {
+	if(accel == 0) {count++;}
+	else {count = 0;}
+}
+
+/**
+ * Sets current and previous velocity value to zero if the counter has exceeded 5.
+ * @param counter the counter that is checked.
+ * @param vel the current velocity.
+ * @param prevVel the previous velocity.
+ */
+void  setVel(int& counter, float& vel, float& prevVel) {
+	if (counter >= 6) {
+		vel = 0;
+		prevVel = 0;
+		counter = 0;}
+}
 
 class LSM9DS1printCallback : public LSM9DS1callback {
 	virtual void hasSample(float gx,
@@ -44,27 +97,46 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 			       float mx,
 			       float my,
 			       float mz) {
-		
-		// applying Butterworth filter on measured data and converting unit from g to m/(s*s)
-		filtAx = bandpass.bpFilter(ax)*conv;
-		filtAy = bandpass.bpFilter(ay)*conv;
 
-		// integrating acceleration twice to get the position, velocity is high pass filtered
-		calcVelX = integrate(filtAx, dT, prevVelValX);
-		calcVelX = highpass.hpFilter(calcVelX);
-		calcVelY = integrate(filtAy, dT, prevVelValY);
-		calcVelY = highpass.hpFilter(calcVelY);
+		// filter data, bandpass.
+		currAccZ = thresholdOrFilt(az-1, thresh);
+		currAccY = thresholdOrFilt(ay, thresh);
 
-		calcPosX = integrate(calcVelX, dT, prevPosValX);
-		calcPosY = integrate(calcVelY, dT, prevPosValY);
+		// ceeps track of how many times accel has been zero to prevent drift in velocity.
+		counter(countZ, currAccZ);
+		counter(countY, currAccY);
 
-		printf("Position: %f, %f [m]\n", calcPosX, calcPosY);
-		
-		// saving current velocity + position to use in future integration
-		prevVelValX = calcVelX;
-		prevVelValY = calcVelY;
-		prevPosValX = calcPosX;
-		prevPosValY = calcPosY;
+		// integrate to get velocity
+		currVelZ = integrate(prevVelZ, currAccZ, prevAccZ, dT);
+		currVelY = integrate(prevVelY, currAccY, prevAccY, dT);
+
+		// prevent drift in velocity
+		setVel(countZ, currVelZ, prevVelZ);
+		threshold(currVelZ, prevVelZ, 0.001);
+
+		setVel(countY, currVelY, prevVelY);
+		threshold(currVelY, prevVelY, 0.001);
+
+		// integrate to get position
+		currPosZ = integrate(prevPosZ, currVelZ, prevVelZ, dT);
+		currPosY = integrate(prevPosY, currVelY, prevVelY, dT);
+
+		// print values
+		printf("Acc, vel & pos: %f, %f, %f, %f, %f, %f \n", currAccZ, currVelZ, currPosZ, currAccY, currVelY, currPosY );
+
+		//printf("acc, count: %f, %f, %i, %i \n", filtAz, filtAy, countZ, countY );
+
+
+		// set current values to previous
+		prevAccZ = currAccZ;
+		prevAccY = currAccY;
+
+		prevVelZ = currVelZ;
+		prevVelY = currVelY;
+
+		prevPosZ = currPosZ;
+		prevPosY = currPosY;
+
 	}
 };
 
