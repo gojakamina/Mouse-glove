@@ -12,7 +12,7 @@
 float currAccZ, currAccY, currVelZ, currVelY, currPosZ, currPosY, prevAccZ, prevAccY, prevVelZ, prevVelY, prevPosZ, prevPosY = 0;
 float dT = 0.01;
 float conv = 9.80665;
-float thresh  = 0.06;;
+float thresh  = 0.06;
 int countZ, countY = 0;
 
 
@@ -121,10 +121,9 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 		currPosZ = integrate(prevPosZ, currVelZ, prevVelZ, dT);
 		currPosY = integrate(prevPosY, currVelY, prevVelY, dT);
 
-		// print values
-		printf("Acc, vel & pos: %f, %f, %f, %f, %f, %f \n", currAccZ, currVelZ, currPosZ, currAccY, currVelY, currPosY );
 
-		//printf("acc, count: %f, %f, %i, %i \n", filtAz, filtAy, countZ, countY );
+		// print values
+		printf("Acc, vel & pos: %f, %f, %f, %f, %f, %f \n", currAccZ, currVelZ, currPosZ*conv, currAccY, currVelY, currPosY*conv);
 
 
 		// set current values to previous
