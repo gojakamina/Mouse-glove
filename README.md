@@ -37,6 +37,6 @@ make
 
 ### Test
 ```diff
-cd /example  
+cd example  
 ./LSM9DS1_demo
 ```
