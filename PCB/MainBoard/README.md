@@ -1,7 +1,12 @@
+==================Including===================  
+Main board ciucuit schematic (.pdf)  
+Main board PCB layout(.brd only open by Allegro 17.4)  
+Main board Mask Top/Bottom(1:1, .pdf)  
+
 ==================Main Board===================  
 5V-3.3V LDO.  
 Sensor unit (LSN9DS1 based).  
-I2C buffering unit (P82B91).  
+I2C buffering unit (P82B96).  
 vibration driver circuit.  
 Connectors to Expansion Board, switchs, and vibration motor.
 
