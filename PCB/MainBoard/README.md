@@ -1,3 +1,8 @@
+==================Including===================  
+Main board ciucuit schematic (.pdf)  
+Main board PCB layout(.brd only open by Allegro 17.4)  
+Main board Mask Top/Bottom(1:1, .pdf)  
+
 ==================Main Board===================  
 5V-3.3V LDO.  
 Sensor unit (LSN9DS1 based).  
