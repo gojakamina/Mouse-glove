@@ -38,5 +38,5 @@ make
 ### Test
 ```diff
 cd example  
-./LSM9DS1_demo
+./demo
 ```
