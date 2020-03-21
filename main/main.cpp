@@ -21,8 +21,8 @@ extern "C" {
 #define Left_Key_down  0 //PIN11
 #define Left_Key_up    1 //PIN12
 #define Right_Key_down 2 //PIN13
-#define Right_key_up   3 //Pin15
-#define reset		   4 //Pin16
+#define Right_Key_up   3 //Pin15
+#define reset_button   4 //Pin16
 #define Motor		   5 //Pin18
 
 
@@ -30,7 +30,7 @@ float currAccZ, currAccY, currVelZ, currVelY, currPosZ, currPosY, prevAccZ, prev
 float dT = 0.01;
 float conv = 9.80665;
 float thresh  = 0.06;
-float dpi = 1920/53.15 //24' 1080p
+float dpi = 1920/53.15; //24' 1080p
 int countZ, countY = 0;
 
 
@@ -85,6 +85,7 @@ void *MouseClik(void *args){
 	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &mouse_downL);
 	wiringPiISR (Right_Key_up, INT_EDGE_FALLING, &mouse_upR);
 	wiringPiISR (Right_Key_down, INT_EDGE_RISING, &mouse_downR);
+	return 0;
 }
 
 
@@ -92,13 +93,15 @@ void positionReset() {
 	currPosZ = 0;
 	currPosY = 0;
 	digitalWrite(Motor, HIGH);
+	delay(500);
 }
 	
 //thread for reset position
 void *reset(void *args){
-	pinMode(reset,INPUT);
+	pinMode(reset_button,INPUT);
 	pinMode(Motor, OUTPUT);
-	wiringPiISR (reset, INT_EDGE_FALLING, &positionReset);
+	wiringPiISR (reset_button, INT_EDGE_FALLING, &positionReset);
+	return 0;
 }
 	
 
@@ -214,16 +217,18 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 		prevPosZ = currPosZ;
 		prevPosY = currPosY;
 		
-		xdo_mouse_move(x, currPosY*conv*dpi*100, currPosY*conv*dpi*100,0);
+		xdo_move_mouse(x, currPosY*conv*dpi*100, currPosY*conv*dpi*100,0);
+		//move mouse
 	}
 };
 
 int main(int argc, char *argv[]) {
 	
 	wiringPiSetup();
-	pthread_t click,reset;
+	
+	pthread_t click,Topleftmove;
 	pthread_create(&click,NULL,MouseClik,NULL);
-	pthread_create(&reset,NULL,reset,NULL);
+	pthread_create(&Topleftmove,NULL,reset,NULL);
 	
     LSM9DS1 imu(IMU_MODE_I2C, 0x6b, 0x1e);
     LSM9DS1printCallback callback;

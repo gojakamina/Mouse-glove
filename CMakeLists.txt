@@ -6,10 +6,9 @@ endif()
 
 project(LSM9DS1_RaspberryPi_Library LANGUAGES CXX)
 include(GNUInstallDirs)
-add_subdirectory(example)
-add_subdirectory(lib/googletest)
+add_subdirectory(main)
 
-include_directories(example)
+include_directories(main)
 
 # add_compile_options(-Wall -Wconversion -Wextra -pedantic)
 
