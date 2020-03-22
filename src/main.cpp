@@ -50,7 +50,7 @@ void mouse_upL(void){
 }
 
 void mouse_upR(void){
-	xdo_mouse_up(x, CURRENTWINDOW, 2);
+	xdo_mouse_up(x, CURRENTWINDOW, 3);
 	//std::cout << "release\n";
 }
 
@@ -58,7 +58,7 @@ void mouse_downL(void){
 	//anti-shake
 	delay(20);
 	if(digitalRead(Left_Key_down)){
-		xdo_mouse_down(x, CURRENTWINDOW, 3);
+		xdo_mouse_down(x, CURRENTWINDOW, 1);
 		//std::cout << "press\n";
 	}
 }
