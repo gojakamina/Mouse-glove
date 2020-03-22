@@ -31,12 +31,14 @@ library for LSM9DS1 has been integrated in the project.
 
 ### Install
 ```diff
-cmake .  
+mkdir build
+cd build
+cmake ..  
 make
 ```
 
 ### Test
 ```diff
-cd example  
-./LSM9DS1_demo
+cd bin  
+./demo
 ```
