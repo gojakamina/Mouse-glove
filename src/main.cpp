@@ -30,7 +30,7 @@ float currAccZ, currAccY, currVelZ, currVelY, currPosZ, currPosY, prevAccZ, prev
 float dT = 0.01;
 float conv = 9.80665;
 float thresh  = 0.06;
-float dpi = 1920/53.15; //24' 1080p
+int dpi = 36; //24' 1080p 1920 / 53.5 cm
 int countZ, countY = 0;
 
 
