@@ -46,7 +46,7 @@ const float cutoff_frequency = 5;
 
 private:
         // create the filter structure for 8th order
-	Iir::Butterworth::LowPass<8> *lp;
+	Iir::Butterworth::LowPass<8> lp;
 
 };
 

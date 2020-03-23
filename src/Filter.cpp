@@ -3,7 +3,7 @@
 
 // Constructor
 Filter::Filter() {
-	lp->setup(samplingrate, cutoff_frequency);
+	lp.setup(samplingrate, cutoff_frequency);
 }
 
 
@@ -21,7 +21,7 @@ float Filter::thresholdOrFilt(float value) {
 		return 0;
 	}
 	else {
-		return lp->filter(value);
+		return lp.filter(value);
 	}
 }
 
@@ -89,5 +89,5 @@ void Filter::setVel(int& counter, float& vel, float& prevVel) {
 
 Filter::~Filter() 
 {
-	delete lp;
+	//delete lp;
 }
