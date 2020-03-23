@@ -6,7 +6,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
-add_library(lsm9ds1 LSM9DS1.cpp)
+add_library(lsm9ds1 LSM9DS1.cpp Filter.cpp)
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 target_link_libraries(demo lsm9ds1 rt)
 

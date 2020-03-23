@@ -14,7 +14,7 @@ extern "C" {
 #include "LSM9DS1.h"
 #include "Filter.h"
 
-#include <pthread.h> 
+#include <pthread.h>
 #include <iostream>
 #include <wiringPi.h>
 
@@ -23,23 +23,20 @@ extern "C" {
 #define Right_Key_down 2 //PIN13
 #define Right_Key_up   3 //Pin15
 #define reset_button   4 //Pin16
-#define Motor		   5 //Pin18
+#define Motor          5 //Pin18
 
 
 float currAccZ, currAccY, currVelZ, currVelY, currPosZ, currPosY, prevAccZ, prevAccY, prevVelZ, prevVelY, prevPosZ, prevPosY = 0;
-float dT = 0.01;
-float conv = 9.80665;
-float thresh  = 0.06;
-int dpi = 36; //24' 1080p 1920 / 53.5 cm
+
 int countZ, countY = 0;
 
+float conv = 9.80665;
 
-// sampling rate and frequencies for filtering high frequencies
-const float samplingrate = 100;
-const float cutoff_frequency = 5;
+int dpi = 36; //24' 1080p 1920 / 53.5 cm
 
-// filter order is determined in the class found in Filter.h, should be changed
-Filter lowpass(samplingrate, cutoff_frequency);
+// filter
+Filter filter;
+
 
 xdo_t * x = xdo_new(NULL);
 
@@ -76,10 +73,10 @@ void mouse_downR(void){
 void *MouseClik(void *args){
 	pinMode(Left_Key_down,INPUT);
 	pinMode(Left_Key_up,INPUT);
-	
+
 	pinMode(Right_Key_down,INPUT);
 	pinMode(Right_Key_up,INPUT);
-		
+
 	//setup interrupte
 	wiringPiISR (Left_Key_up, INT_EDGE_FALLING, &mouse_upL);
 	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &mouse_downL);
@@ -95,7 +92,7 @@ void positionReset() {
 	digitalWrite(Motor, HIGH);
 	delay(500);
 }
-	
+
 //thread for reset position
 void *reset(void *args){
 	pinMode(reset_button,INPUT);
@@ -103,70 +100,8 @@ void *reset(void *args){
 	wiringPiISR (reset_button, INT_EDGE_FALLING, &positionReset);
 	return 0;
 }
-	
-
-/**
- * Threshold used for accelerometer data. Prevents values lower than a specified limit.
- * If the threshold is reached the data will be filtered.
- * @param value the input value that should be processed.
- * @param thresh the threshold value.
- * @return 0 if the value doesn't reach threshold, otherwise return filtered value.
- */
-float thresholdOrFilt(float value, float thresh) {
-	if( value < thresh && value > -thresh) {return 0;}
-	else {return lowpass.lpFilter(value);}
-}
 
 
-/**
- * Threshold used for velocity data. Prevents drift and acts as a high pass filter.
- * If the value doesn't reach threshold, both the current value and previous will be set to 0.
- * @param value the input value that should be checked.
- * @param prev the previous value corresponding to the input value.
- * @thresh the threshold value.
- */
-void threshold(float& value, float& prev, float thresh) {
-	if(value < thresh && value > - thresh) {
-		value = 0;
-		prev = 0;
-	}
-}
-
-/**
- * Integrates the input value with the trapezoidal method.
- * @param val0 the initial value.
- * @param curr the current value with unit that needs to be integrated.
- * @param prev the previous value with unit that needs to be integrated.
- * @param dT the elapsed time between the measured readings.
- * @return the calculated integral.
- */
-float integrate(float val0, float curr, float prev, float dT) {
-    return val0 + dT*(curr+prev)*0.5;
-}
-
-
-/**
- * Counts number of times that acceleration has been zero.
- * @param count the counter that is checked.
- * @param accel the value of the current acceleration.
- */
-void counter(int& count, float accel) {
-	if(accel == 0) {count++;}
-	else {count = 0;}
-}
-
-/**
- * Sets current and previous velocity value to zero if the counter has exceeded 5.
- * @param counter the counter that is checked.
- * @param vel the current velocity.
- * @param prevVel the previous velocity.
- */
-void  setVel(int& counter, float& vel, float& prevVel) {
-	if (counter >= 6) {
-		vel = 0;
-		prevVel = 0;
-		counter = 0;}
-}
 
 class LSM9DS1printCallback : public LSM9DS1callback {
 	virtual void hasSample(float gx,
@@ -180,34 +115,28 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 			       float mz) {
 
 		// filter data, bandpass.
-		currAccZ = thresholdOrFilt(az-1, thresh);
-		currAccY = thresholdOrFilt(ay, thresh);
+		currAccZ = filter.thresholdOrFilt(az-1);
+		currAccY = filter.thresholdOrFilt(ay);
 
 		// ceeps track of how many times accel has been zero to prevent drift in velocity.
-		counter(countZ, currAccZ);
-		counter(countY, currAccY);
+		filter.counter(countZ, currAccZ);
+		filter.counter(countY, currAccY);
 
 		// integrate to get velocity
-		currVelZ = integrate(prevVelZ, currAccZ, prevAccZ, dT);
-		currVelY = integrate(prevVelY, currAccY, prevAccY, dT);
+		currVelZ = filter.integrate(prevVelZ, currAccZ, prevAccZ);
+		currVelY = filter.integrate(prevVelY, currAccY, prevAccY);
 
 		// prevent drift in velocity
-		setVel(countZ, currVelZ, prevVelZ);
-		threshold(currVelZ, prevVelZ, 0.001);
+		filter.setVel(countZ, currVelZ, prevVelZ);
+		filter.threshold(currVelZ, prevVelZ);
 
-		setVel(countY, currVelY, prevVelY);
-		threshold(currVelY, prevVelY, 0.001);
+		filter.setVel(countY, currVelY, prevVelY);
+		filter.threshold(currVelY, prevVelY);
 
 		// integrate to get position
-		currPosZ = integrate(prevPosZ, currVelZ, prevVelZ, dT);
-		currPosY = integrate(prevPosY, currVelY, prevVelY, dT);
+		currPosZ = filter.integrate(prevPosZ, currVelZ, prevVelZ);
+		currPosY = filter.integrate(prevPosY, currVelY, prevVelY);
 
-
-		// print values
-		//printf("Acc, vel & pos: %f, %f, %f, %f, %f, %f \n", currAccZ, currVelZ, currPosZ*conv, currAccY, currVelY, currPosY*conv);
-
-
-		// set current values to previous
 		prevAccZ = currAccZ;
 		prevAccY = currAccY;
 
@@ -216,29 +145,32 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 
 		prevPosZ = currPosZ;
 		prevPosY = currPosY;
-		
-		xdo_move_mouse(x, currPosY*conv*dpi*100, currPosY*conv*dpi*100,0);
+
+		printf("Acc, vel & pos: %f, %f, %f, %f, %f, %f \n", currAccZ, currVelZ, currPosZ*conv, currAccY, currVelY, currPosY*conv);
+
+		//xdo_move_mouse(x, currPosY*conv*dpi*100, currPosY*conv*dpi*100,0);
 		//move mouse
 	}
 };
 
+
 int main(int argc, char *argv[]) {
-	
+
 	wiringPiSetup();
-	
+
 	pthread_t click,Topleftmove;
 	pthread_create(&click,NULL,MouseClik,NULL);
 	pthread_create(&Topleftmove,NULL,reset,NULL);
-	
+
     LSM9DS1 imu(IMU_MODE_I2C, 0x6b, 0x1e);
     LSM9DS1printCallback callback;
     imu.setCallback(&callback);
     imu.begin();
-    
+
     do {
 	sleep(1);
     } while (getchar() != 27);
     imu.end();
-    
+
     exit(EXIT_SUCCESS);
 }
