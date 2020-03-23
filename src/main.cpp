@@ -133,6 +133,12 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 		filter.setVel(countY, currVelY, prevVelY);
 		filter.threshold(currVelY, prevVelY);
 
+		// print to check sensor data
+		printf("Acc, vel & pos: %f, %f, %f, %f, %f, %f \n", currAccZ, currVelZ, currPosZ*conv, currAccY, currVelY, currPosY*conv);
+
+		//xdo_move_mouse(x, currPosY*conv*dpi*100, currPosY*conv*dpi*100,0);
+		//move mouse
+
 		// integrate to get position
 		currPosZ = filter.integrate(prevPosZ, currVelZ, prevVelZ);
 		currPosY = filter.integrate(prevPosY, currVelY, prevVelY);
@@ -146,10 +152,6 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 		prevPosZ = currPosZ;
 		prevPosY = currPosY;
 
-		printf("Acc, vel & pos: %f, %f, %f, %f, %f, %f \n", currAccZ, currVelZ, currPosZ*conv, currAccY, currVelY, currPosY*conv);
-
-		//xdo_move_mouse(x, currPosY*conv*dpi*100, currPosY*conv*dpi*100,0);
-		//move mouse
 	}
 };
 
