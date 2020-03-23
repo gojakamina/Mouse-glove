@@ -4,7 +4,6 @@
 #include <QWidget>
 
 class QPushButton;
-class QGridLayout;
 class QTextEdit;
 
 // This is the declaration of our Window class
@@ -22,7 +21,6 @@ public:
 
 private:
 	QPushButton *button_1; // button
-	QGridLayout *gridLayout; // grid layout
 	QTextEdit *instTxt; // instruction text
 
 };

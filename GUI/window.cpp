@@ -13,7 +13,7 @@ Window::Window(QWidget *parent) :
 	instTxt->setText("Text on how to use the mouse-glove here. This can be edited in window.cpp");
 
 	// grid layout
-	gridLayout = new QGridLayout();
+	QGridLayout *gridLayout = new QGridLayout();
 
 	gridLayout->addWidget(instTxt,0,0); // placement on row 0, column 0
 	gridLayout->addWidget(button_1,1,0); // placement on row 1, column 0
@@ -32,5 +32,4 @@ Window::~Window()
 {
 	delete button_1;
 	delete instTxt;
-	delete gridLayout;
 }
