@@ -43,4 +43,4 @@ cd bin
 ./demo
 ```
 
-[Find mouse glove on twitter](https://twitter.com/glove_mouse)
+[Follow us on twitter](https://twitter.com/glove_mouse)
