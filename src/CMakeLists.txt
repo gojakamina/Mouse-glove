@@ -37,4 +37,4 @@ link_directories(/usr/lib/arm-linux-gnueabihf /usr/lib/arm-linux-gnueabihf)
 #(wiringPi and xdo are under it)
 
 target_link_libraries(demo xdo wiringPi)
-#find and link libraries "xdo" and "wiringPi" to "demo"
+#link libraries "xdo" and "wiringPi" to "demo"
