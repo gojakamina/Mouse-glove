@@ -158,13 +158,12 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 
 int main(int argc, char *argv[]) {
 
-	wiringPiSetup();
-
-	pthread_t click,Topleftmove;
-	pthread_create(&click,NULL,MouseClik,NULL);
-	pthread_create(&Topleftmove,NULL,reset,NULL);
-
     LSM9DS1 imu(IMU_MODE_I2C, 0x6b, 0x1e);
+
+    pthread_t click,Topleftmove;
+    pthread_create(&click,NULL,MouseClik,NULL);
+    pthread_create(&Topleftmove,NULL,reset,NULL);
+    
     LSM9DS1printCallback callback;
     imu.setCallback(&callback);
     imu.begin();
