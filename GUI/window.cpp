@@ -1,24 +1,43 @@
+
 #include <QtWidgets>
 #include "window.h"
 
 // Constructor for main widget
-Window::Window(QWidget *parent) :
-    QWidget(parent)
+Window::Window() 
 {
-	// create start button
-	button_1 = new QPushButton(tr("Start"));
 
-	// text about instructions
-	instTxt = new QTextEdit();
-	instTxt->setText("Text on how to use the mouse-glove here. This can be edited in window.cpp");
+   createTextBox();
+   createButtons();
+   QGridLayout *mainLayout = new QGridLayout;
 
-	// grid layout
-	QGridLayout *gridLayout = new QGridLayout();
+   mainLayout->addWidget(instrTxt, 0, 0); // placement on row 0, column 0
+   mainLayout->addWidget(buttons, 1, 0); // placement on row 1, column 0
 
-	gridLayout->addWidget(instTxt,0,0); // placement on row 0, column 0
-	gridLayout->addWidget(button_1,1,0); // placement on row 1, column 0
+   setLayout(mainLayout);
+   setWindowTitle(tr("Mouse-glove"));
 
 }
+
+void Window::createTextBox() {
+   instrTxt = new QTextEdit();
+   instrTxt->setText(tr("Introduction text."));
+   
+}
+
+
+void Window::createButtons() {
+   buttons  = new QGroupBox();
+   QHBoxLayout *layout = new QHBoxLayout;
+
+   instrButton = new QPushButton(tr("Instructions"));
+   startButton = new QPushButton(tr("Start"));
+
+   layout->addWidget(instrButton);
+   layout->addWidget(startButton);
+   buttons->setLayout(layout);
+
+}
+
 
 /**
 	void Window::timerEvent( QTimerEvent *)
@@ -30,6 +49,8 @@ Window::Window(QWidget *parent) :
 // Destructor
 Window::~Window()
 {
-	delete button_1;
-	delete instTxt;
+	delete instrTxt;
+	delete instrButton;
+	delete startButton;
+	// delete gridLayout;
 }

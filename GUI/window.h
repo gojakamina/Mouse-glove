@@ -3,26 +3,45 @@
 
 #include <QWidget>
 
-class QPushButton;
+class QHBoxLayout;
+class QGroupBox;
 class QTextEdit;
+class QPushButton;
+class QGridLayout;
 
-// This is the declaration of our Window class
-// The definition/implementation is in window.cpp
+/**
+ * GUI window class.
+ */
+
 class Window : public QWidget
 {
 	Q_OBJECT
 
-public:
-	explicit Window(QWidget *parent = 0); //Constructor
+ public:
 
-	~Window(); // Destructor
+   /** The constructor. */
+   Window(); //Constructor
 
-	// void timerEvent( QTimerEvent * );
+   /** The destructor. */
+  ~Window(); // Destructor
 
-private:
-	QPushButton *button_1; // button
-	QTextEdit *instTxt; // instruction text
+   // void timerEvent( QTimerEvent * );
 
+
+ private:
+
+   /** @brief Creates a text box. */
+   void createTextBox();
+
+   /** @brief Creates buttons. */
+   void createButtons();
+
+   QTextEdit *instrTxt; /** Instruction text. */
+   QPushButton *instrButton; /** Instruction button. */
+   QPushButton *startButton; /** Start button. */
+   QGridLayout *gridLayout; /** Grid layout. */
+   QGroupBox *buttons; /** Button layout. */
 };
 
 #endif // WINDOW_H
+
