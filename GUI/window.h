@@ -2,12 +2,14 @@
 #define WINDOW_H
 
 #include <QWidget>
+#include "instrwindow.h"
 
 class QHBoxLayout;
 class QGroupBox;
-class QTextEdit;
+class QLabel;
 class QPushButton;
 class QGridLayout;
+class InstrWindow;
 
 /**
  * GUI window class.
@@ -36,11 +38,14 @@ class Window : public QWidget
    /** @brief Creates buttons. */
    void createButtons();
 
-   QTextEdit *instrTxt; /** Instruction text. */
+   /** Opens second window. */
+   void openWindow();
+
+   QLabel *instrTxt; /** Instruction text. */
    QPushButton *instrButton; /** Instruction button. */
    QPushButton *startButton; /** Start button. */
-   QGridLayout *gridLayout; /** Grid layout. */
    QGroupBox *buttons; /** Button layout. */
+   InstrWindow instrWindow; /** Instruction window. */
 };
 
 #endif // WINDOW_H

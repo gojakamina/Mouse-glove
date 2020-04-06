@@ -8,6 +8,7 @@ Window::Window()
 
    createTextBox();
    createButtons();
+   
    QGridLayout *mainLayout = new QGridLayout;
 
    mainLayout->addWidget(instrTxt, 0, 0); // placement on row 0, column 0
@@ -18,8 +19,9 @@ Window::Window()
 
 }
 
+	 
 void Window::createTextBox() {
-   instrTxt = new QTextEdit();
+   instrTxt = new QLabel();
    instrTxt->setText(tr("Introduction text."));
    
 }
@@ -34,10 +36,18 @@ void Window::createButtons() {
 
    layout->addWidget(instrButton);
    layout->addWidget(startButton);
+   
+   connect(instrButton, &QPushButton::clicked, this, &Window::openWindow);
+   // connect(startButton, &QPushButton::clicked, this, &);
+   
    buttons->setLayout(layout);
 
 }
 
+
+void Window::openWindow() {
+   instrWindow.show();
+}
 
 /**
 	void Window::timerEvent( QTimerEvent *)
@@ -52,5 +62,5 @@ Window::~Window()
 	delete instrTxt;
 	delete instrButton;
 	delete startButton;
-	// delete gridLayout;
+	delete buttons;
 }
