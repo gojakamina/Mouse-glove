@@ -155,16 +155,9 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 	}
 };
 
-
-int main(int argc, char *argv[]) {
-
-    LSM9DS1 imu(IMU_MODE_I2C, 0x6b, 0x1e);
-
-    pthread_t click,Topleftmove;
-    pthread_create(&click,NULL,MouseClik,NULL);
-    pthread_create(&Topleftmove,NULL,reset,NULL);
-    
-    LSM9DS1printCallback callback;
+void *MouseMove(void *args){
+	LSM9DS1 imu(IMU_MODE_I2C, 0x6b, 0x1e);
+	LSM9DS1printCallback callback;
     imu.setCallback(&callback);
     imu.begin();
 
@@ -172,6 +165,22 @@ int main(int argc, char *argv[]) {
 	sleep(1);
     } while (getchar() != 27);
     imu.end();
+}
+
+
+int main(int argc, char *argv[]) {
+
+    wiringPiSetupGpio();
+
+    //pthread_t click,Topleftmove;
+    pthread_t move;
+    //pthread_create(&click,NULL,MouseClik,NULL);
+    //pthread_create(&Topleftmove,NULL,reset,NULL);
+    pthread_create(&move,NULL,MouseMove,NULL);
+
+    do {
+	sleep(1);
+    } while (getchar() != 27);
 
     exit(EXIT_SUCCESS);
 }
