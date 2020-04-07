@@ -6,6 +6,7 @@
 class QLabel;
 class QPushButton;
 class QGridLayout;
+class QPalette;
 
 
 /**

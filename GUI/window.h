@@ -10,6 +10,7 @@ class QLabel;
 class QPushButton;
 class QGridLayout;
 class InstrWindow;
+class QPalette;
 
 /**
  * GUI window class.

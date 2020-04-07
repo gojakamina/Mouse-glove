@@ -8,7 +8,7 @@ Window::Window()
 
    createTextBox();
    createButtons();
-   
+
    QGridLayout *mainLayout = new QGridLayout;
 
    mainLayout->addWidget(instrTxt, 0, 0); // placement on row 0, column 0
@@ -17,13 +17,26 @@ Window::Window()
    setLayout(mainLayout);
    setWindowTitle(tr("Mouse-glove"));
 
+   QPalette palette = this->palette();
+   palette.setColor(QPalette::Window, QColor(255,250,250,255));
+   this->setPalette(palette);
+
 }
 
-	 
+
 void Window::createTextBox() {
-   instrTxt = new QLabel();
-   instrTxt->setText(tr("Introduction text."));
    
+   instrTxt = new QLabel();
+   instrTxt->setText(
+   tr(" \n \
+Welcome to the Mouse-glove application! \n \n \
+We are three creators who have implemented a glove \n \
+that willl act as a mouse cursor. If you need instructions \n \
+on how to use it, please press the instruction button. \n \
+If you want to start trying the mouse-glove, press start. \n \n \
+Enjoy!"));
+   instrTxt->setAlignment(Qt::AlignCenter);
+
 }
 
 
@@ -36,10 +49,25 @@ void Window::createButtons() {
 
    layout->addWidget(instrButton);
    layout->addWidget(startButton);
-   
+
+
+   QPalette pal1 = startButton->palette();
+   pal1.setColor(QPalette::Button, QColor(255,250,250,255));
+   startButton->setAutoFillBackground(true);
+   startButton->setPalette(pal1);
+   startButton->update();
+
+
+   QPalette pal2 = instrButton->palette();
+   pal2.setColor(QPalette::Button, QColor(255,250,250,255));
+   instrButton->setAutoFillBackground(true);
+   instrButton->setPalette(pal2);
+   instrButton->update();
+
+
    connect(instrButton, &QPushButton::clicked, this, &Window::openWindow);
    // connect(startButton, &QPushButton::clicked, this, &Window::startExec);
-   
+ 
    buttons->setLayout(layout);
 
 }
