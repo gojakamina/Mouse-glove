@@ -41,6 +41,9 @@ class Window : public QWidget
    /** Opens second window. */
    void openWindow();
 
+   /** Starts execution of mouse-glove. */
+   void startExec();
+
    QLabel *instrTxt; /** Instruction text. */
    QPushButton *instrButton; /** Instruction button. */
    QPushButton *startButton; /** Start button. */

@@ -38,7 +38,7 @@ void Window::createButtons() {
    layout->addWidget(startButton);
    
    connect(instrButton, &QPushButton::clicked, this, &Window::openWindow);
-   // connect(startButton, &QPushButton::clicked, this, &);
+   // connect(startButton, &QPushButton::clicked, this, &Window::startExec);
    
    buttons->setLayout(layout);
 
@@ -47,6 +47,12 @@ void Window::createButtons() {
 
 void Window::openWindow() {
    instrWindow.show();
+}
+
+
+void Window::startExec() {
+   // write code here to link it to the main of the project.
+   // uncomment line 41 once you're done.
 }
 
 /**
