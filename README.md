@@ -15,6 +15,7 @@ In this project, the aim is to create a wireless glove that acts as a mouse. Use
 
 
 ### Packages/Libraries installation
+
 ```diff
 WiringPi: $sudo apt-get install wiringpi 
 //For GPIO control and I2C  
@@ -29,6 +30,11 @@ xdo: $sudo apt-get install -y libxdo-dev
 ```
 library for LSM9DS1 has been integrated in the project.
 
+```diff
+boost test : sudo apt-get install libboost-all-dev 
+//For unite testing
+```
+
 ### Install
 ```diff
 mkdir build
@@ -38,6 +44,13 @@ make
 ```
 
 ### Test
+After finish Install
+```diff
+cd build  
+make test
+```
+
+### Run
 ```diff
 cd bin  
 ./demo
