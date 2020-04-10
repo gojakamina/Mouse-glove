@@ -1,0 +1,5 @@
+add_executable (demo main.cpp)
+find_package(iir)
+add_library (Filter Filter.cpp Filter.h)
+target_link_libraries(demo iir::iir)
+target_link_libraries (demo Filter)
