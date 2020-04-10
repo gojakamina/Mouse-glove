@@ -2,32 +2,45 @@
 #include <boost/test/unit_test.hpp>
 #include "Filter.h"
 
+
 Filter filter;
 
 
 BOOST_AUTO_TEST_SUITE(FilterTest)
 
-// test threshold or filter
-BOOST_AUTO_TEST_CASE(ThresholdOrFilt)
+
+BOOST_AUTO_TEST_CASE( TestThresholdOrFiltZero )
 {
-	BOOST_CHECK_EQUAL(0, filter.thresholdOrFilt(0));
+	BOOST_TEST_MESSAGE( "Testing threshold on thresholdOrFilt :" );
+	BOOST_CHECK_EQUAL( 0, filter.thresholdOrFilt(0) );
 }
 
-// test integration with zero
-BOOST_AUTO_TEST_CASE(IntegrateZero)
+
+BOOST_AUTO_TEST_CASE( TestThresholdOrFiltNonZero )
 {
-	BOOST_CHECK_EQUAL(0, filter.integrate(0, 0, 0));
+	BOOST_TEST_MESSAGE( "Testing filter on thresholdOrFilt :" );
+	if( 0 == filter.thresholdOrFilt(1) )
+        BOOST_ERROR( "Check butterworht filter." );
 }
 
-// test integration with curr+prev=0
-BOOST_AUTO_TEST_CASE(IntegrateNonZero)
+
+BOOST_AUTO_TEST_CASE( TestIntegrateZero )
 {
+	BOOST_TEST_MESSAGE( "Testing integration with zero input :" );
+	BOOST_CHECK_EQUAL( 0, filter.integrate(0, 0, 0) );
+}
+
+
+BOOST_AUTO_TEST_CASE( TestIntegrateNonZero )
+{
+	BOOST_TEST_MESSAGE( "Testing integration with initial value 1 :" );
 	BOOST_CHECK_EQUAL(1, filter.integrate(1, 0, 0));
 }
 
-// test pass threshold
-BOOST_AUTO_TEST_CASE(PassThresh)
+
+BOOST_AUTO_TEST_CASE( TestPassThresh )
 {
+	BOOST_TEST_MESSAGE( "Testing pass threshold on threshold :" );
 	float value = 1;
 	float prev = 1;
 	filter.threshold(value, prev);
@@ -35,27 +48,41 @@ BOOST_AUTO_TEST_CASE(PassThresh)
 	BOOST_CHECK_EQUAL(1, prev);
 }
 
-// test threshold
-BOOST_AUTO_TEST_CASE(Thresh)
+
+BOOST_AUTO_TEST_CASE( TestPosThresh )
 {
-	float value = 0;
-	float prev = 0;
+	BOOST_TEST_MESSAGE( "Testing positive threshold on threshold :" );
+	float value = 0.0005;
+	float prev = 0.0005;
 	filter.threshold(value, prev);
 	BOOST_CHECK_EQUAL(0, value);
 	BOOST_CHECK_EQUAL(0, prev);
 }
 
-// test counter
-BOOST_AUTO_TEST_CASE(Counter)
+
+BOOST_AUTO_TEST_CASE( TestNegThresh )
 {
+	BOOST_TEST_MESSAGE( "Testing negative threshold on threshold :" );
+	float value = -0.0005;
+	float prev = 0.0005;
+	filter.threshold(value, prev);
+	BOOST_CHECK_EQUAL(0, value);
+	BOOST_CHECK_EQUAL(0, prev);
+}
+
+
+BOOST_AUTO_TEST_CASE( TestCounter )
+{
+	BOOST_TEST_MESSAGE( "Testing counter :" );
 	int count = 3;
 	filter.counter(count, 0);
 	BOOST_CHECK_EQUAL(4, count);
 }
 
-// test set velocity to zero
-BOOST_AUTO_TEST_CASE(VelToZero)
+
+BOOST_AUTO_TEST_CASE( TestVelToZero )
 {
+	BOOST_TEST_MESSAGE( "Testing setVel :" );
 	int count = 6;
 	float vel = 0.5;
 	float prevVel = 0.5;
@@ -64,5 +91,6 @@ BOOST_AUTO_TEST_CASE(VelToZero)
 	BOOST_CHECK_EQUAL(0, vel);
 	BOOST_CHECK_EQUAL(0, prevVel);
 }
+
 
 BOOST_AUTO_TEST_SUITE_END()
