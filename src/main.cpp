@@ -13,20 +13,14 @@ extern "C" {
 #include "LSM9DS1_Types.h"
 #include "LSM9DS1.h"
 #include "Filter.h"
+#include "Mouse.h"
 
 #include <pthread.h>
 #include <iostream>
 #include <wiringPi.h>
 
-#define Left_Key_down  0 //PIN11
-#define Left_Key_up    1 //PIN12
-#define Right_Key_down 2 //PIN13
-#define Right_Key_up   3 //Pin15
-#define reset_button   4 //Pin16
-#define Motor          5 //Pin18
-
-
-float currAccZ, currAccY, currVelZ, currVelY, currPosZ, currPosY, prevAccZ, prevAccY, prevVelZ, prevVelY, prevPosZ, prevPosY = 0;
+float currAccZ, currAccY, currVelZ, currVelY, currPosZ, currPosY = 0;
+float prevAccZ, prevAccY, prevVelZ, prevVelY, prevPosZ, prevPosY = 0;
 
 int countZ, countY = 0;
 
@@ -37,36 +31,14 @@ int dpi = 36; //24' 1080p 1920 / 53.5 cm
 // filter
 Filter filter;
 
-
-xdo_t * x = xdo_new(NULL);
-
-
-void mouse_upL(void){
-	xdo_mouse_up(x, CURRENTWINDOW, 1);
-	//std::cout << "release\n";
-}
-
-void mouse_upR(void){
-	xdo_mouse_up(x, CURRENTWINDOW, 3);
-	//std::cout << "release\n";
-}
-
-void mouse_downL(void){
-	//anti-shake
-	delay(20);
-	if(digitalRead(Left_Key_down)){
-		xdo_mouse_down(x, CURRENTWINDOW, 1);
-		//std::cout << "press\n";
-	}
-}
-
-void mouse_downR(void){
-	//anti-shake
-	delay(20);
-	if(digitalRead(Left_Key_down)){
-		xdo_mouse_down(x, CURRENTWINDOW, 3);
-		//std::cout << "press\n";
-	}
+//reset mouse position (Topleft)
+void positionReset() {
+	currPosZ = 0;
+	currPosY = 0;
+	xdo_move_mouse(x, 0, 0, 0);
+	std::cout << "reset\n";
+	digitalWrite(Motor, HIGH);
+	delay(500);
 }
 
 //thread for Click event
@@ -86,12 +58,6 @@ void *MouseClik(void *args){
 }
 
 
-void positionReset() {
-	currPosZ = 0;
-	currPosY = 0;
-	digitalWrite(Motor, HIGH);
-	delay(500);
-}
 
 //thread for reset position
 void *reset(void *args){
@@ -100,8 +66,6 @@ void *reset(void *args){
 	wiringPiISR (reset_button, INT_EDGE_FALLING, &positionReset);
 	return 0;
 }
-
-
 
 class LSM9DS1printCallback : public LSM9DS1callback {
 	virtual void hasSample(float gx,
@@ -155,9 +119,9 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 	}
 };
 
-void *MouseMove(void *args){
-	LSM9DS1 imu(IMU_MODE_I2C, 0x6b, 0x1e);
-	LSM9DS1printCallback callback;
+void *MouseMove(void *args){    
+    LSM9DS1 imu(IMU_MODE_I2C, 0x6b, 0x1e);
+    LSM9DS1printCallback callback;
     imu.setCallback(&callback);
     imu.begin();
 
@@ -166,6 +130,7 @@ void *MouseMove(void *args){
     } while (getchar() != 27);
     imu.end();
     return 0;
+
 }
 
 
