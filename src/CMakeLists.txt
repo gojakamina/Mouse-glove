@@ -13,11 +13,13 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 add_library(lsm9ds1 LSM9DS1.cpp Filter.cpp)
 #creat libray "lsm9ds1" based on "LSM9DS1.cpp" and "Filter.cpp"
 
+add_library(Mouse Mouse.cpp)
+
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 #add directory "../lib" as the path of libries need to be linked.
 #(lem9ds1 is under it)
 
-target_link_libraries(demo lsm9ds1 rt)
+target_link_libraries(demo lsm9ds1 Mouse rt)
 #Link library "lsn8ds1" to "demo"
 
 find_package(iir)
