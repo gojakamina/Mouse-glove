@@ -39,10 +39,10 @@ class Window : public QWidget
    /** @brief Creates buttons. */
    void createButtons();
 
-   /** Opens second window. */
+   /** @brief Opens second window. */
    void openWindow();
 
-   /** Starts execution of mouse-glove. */
+   /** @brief Starts execution of mouse-glove. */
    void startExec();
 
    QLabel *instrTxt; /**< Instruction text. */

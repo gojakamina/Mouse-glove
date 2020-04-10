@@ -20,17 +20,17 @@ class InstrWindow : public QWidget
 
  public:
   
-   /** @brief The constructor. */
+   /** The constructor. */
    InstrWindow();
 
 
-   /** @brief The destructor. */
+   /** The destructor. */
   ~InstrWindow();
 
 
  private:
 
-   /** Creates window. */
+   /** @brief Creates window. */
    void createWindow();
 
 
