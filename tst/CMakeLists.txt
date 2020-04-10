@@ -5,6 +5,7 @@ include_directories (${PROJECT_SOURCE_DIR}/include
 add_definitions (-DBOOST_TEST_DYN_LINK)
 find_package(iir)
 add_executable (Test test.cpp)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 target_link_libraries (Test
  iir
  Filter
