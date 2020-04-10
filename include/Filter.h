@@ -76,15 +76,15 @@ class Filter
 
  private:
 
-    Iir::Butterworth::LowPass<8> lp; /** Filter structure for 8th order lp Butterworth. */
+    Iir::Butterworth::LowPass<8> lp; /**< Filter structure for 8th order lp Butterworth. */
 
-    const float dT = 0.01; /** Time between two samples. */
+    const float dT = 0.01; /**< Time between two samples. */
 
-    const float thresh = 0.06; /** Threshold value for detection of acceleration */
+    const float thresh = 0.06; /**< Threshold value for detection of acceleration */
 
-    const float samplingrate = 100; /** Sampling rate. */
+    const float samplingrate = 100; /**< Sampling rate. */
 
-    const float cutoff_frequency = 5;/** Cutoff frequency. */
+    const float cutoff_frequency = 5;/**< Cutoff frequency. */
 
 };
 
