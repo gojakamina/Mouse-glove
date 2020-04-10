@@ -45,11 +45,11 @@ class Window : public QWidget
    /** Starts execution of mouse-glove. */
    void startExec();
 
-   QLabel *instrTxt; /** Instruction text. */
-   QPushButton *instrButton; /** Instruction button. */
-   QPushButton *startButton; /** Start button. */
-   QGroupBox *buttons; /** Button layout. */
-   InstrWindow instrWindow; /** Instruction window. */
+   QLabel *instrTxt; /**< Instruction text. */
+   QPushButton *instrButton; /**< Instruction button. */
+   QPushButton *startButton; /**< Start button. */
+   QGroupBox *buttons; /**< Button layout. */
+   InstrWindow instrWindow; /**< Instruction window. */
 };
 
 #endif // WINDOW_H

@@ -34,8 +34,8 @@ class InstrWindow : public QWidget
    void createWindow();
 
 
-   QLabel *instrTxt; /** Instruction text. */
-   QPushButton *okButton; /** Ok button. */
+   QLabel *instrTxt; /**< Instruction text. */
+   QPushButton *okButton; /**< Ok button. */
 
 };
 
