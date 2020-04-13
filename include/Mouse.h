@@ -5,9 +5,7 @@ extern "C" {
 #include <xdo.h>
 }
 
-/**
- * @brief The class of mouse event including static functions called by interrupt.
- */
+
 
 #define Left_Key_down  17 ///PIN11
 #define Left_Key_up    18 ///PIN12
@@ -18,6 +16,9 @@ extern "C" {
 
 static xdo_t * x = xdo_new(NULL);
 
+/**
+ * @brief The class of mouse event including static functions called by interrupt.
+ */
 class Mouse {
 	
 	public:
