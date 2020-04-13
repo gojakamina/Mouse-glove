@@ -10,10 +10,8 @@ class QPalette;
 
 
 /**
- * Instruction window class.
+ * @brief Instruction window class.
  */
-
-
 class InstrWindow : public QWidget
 {
 	Q_OBJECT

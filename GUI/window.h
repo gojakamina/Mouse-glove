@@ -12,10 +12,10 @@ class QGridLayout;
 class InstrWindow;
 class QPalette;
 
-/**
- * GUI window class.
- */
 
+/**
+ * @brief GUI window class.
+ */
 class Window : public QWidget
 {
 	Q_OBJECT

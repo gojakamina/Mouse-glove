@@ -52,10 +52,10 @@ void LSM9DS1::init(interface_mode interface, uint8_t xgAddr, uint8_t mAddr)
     settings.device.agAddress = xgAddr;
     settings.device.mAddress = mAddr;
 
-    settings.gyro.enabled = true;
-    settings.gyro.enableX = true;
-    settings.gyro.enableY = true;
-    settings.gyro.enableZ = true;
+    settings.gyro.enabled = false;
+    settings.gyro.enableX = false;
+    settings.gyro.enableY = false;
+    settings.gyro.enableZ = false;
     // gyro scale can be 245, 500, or 2000
     settings.gyro.scale = 245;
     // gyro sample rate: value between 1-6
@@ -80,11 +80,11 @@ void LSM9DS1::init(interface_mode interface, uint8_t xgAddr, uint8_t mAddr)
     settings.gyro.latchInterrupt = true;
 
     settings.accel.enabled = true;
-    settings.accel.enableX = true;
+    settings.accel.enableX = false;
     settings.accel.enableY = true;
     settings.accel.enableZ = true;
     // accel scale can be 2, 4, 8, or 16
-    settings.accel.scale = 16;
+    settings.accel.scale = 2;
     // accel sample rate can be 1-6
     // 1 = 10 Hz    4 = 238 Hz
     // 2 = 50 Hz    5 = 476 Hz
@@ -102,7 +102,7 @@ void LSM9DS1::init(interface_mode interface, uint8_t xgAddr, uint8_t mAddr)
     // 1 = ODR/100   3 = ODR/400
     settings.accel.highResBandwidth = 0;
 
-    settings.mag.enabled = true;
+    settings.mag.enabled = false;
     // mag scale can be 4, 8, 12, or 16
     settings.mag.scale = 4;
     // mag data rate can be 0-7

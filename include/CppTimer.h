@@ -19,6 +19,9 @@
 #define CLOCKID CLOCK_MONOTONIC
 #define SIG SIGRTMIN
 
+/**
+ * @brief Software timer.
+ **/
 class CppTimer {
 
 private:
@@ -28,11 +31,17 @@ private:
 	struct sigaction sa;
 	struct itimerspec its;
 		
+	/**
+     * @brief The handler.
+     **/
 	static void handler(int sig, siginfo_t *si, void *uc ) {
 		(reinterpret_cast<CppTimer *> (si->si_value.sival_ptr))->timerEvent();
 	}
 
 public:
+	/**
+     * @brief The constructor.
+     **/
 	CppTimer() {
 		// We create a static handler catches the signal SIG
 		sa.sa_flags = SA_SIGINFO;
@@ -52,6 +61,9 @@ public:
 			throw("Could not create timer");
 	};
 
+	/**
+     * @brief Stops and deletes the timer.
+     **/
 	void stop() {
 		// delete the timer
 		timer_delete(timerid);
@@ -59,11 +71,17 @@ public:
 		signal(SIG, SIG_IGN);
 	}
 	
+	/**
+     * @brief The destructor.
+     **/
 	virtual ~CppTimer() {
 		stop();
 	}
 
 	// start the timer
+	/**
+     * @brief Starts the timer.
+     **/
 	void start(long nanosecs) {
 		// starts instantly
 		its.it_value.tv_sec = 0;
@@ -77,6 +95,12 @@ public:
 protected:
 	// is implemented by its children
 	// this is exectuted once "start" has been called
+	/**
+     * @brief The timerevent.
+     * 
+     * It is implemented by its children and executes once start method has been called.
+     * 
+     **/
 	virtual void timerEvent() = 0;
 	
 };
