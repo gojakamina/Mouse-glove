@@ -5,9 +5,8 @@
 
 
 /**
- * Filtering and integrating accelerometer data in order to achieve position.
+ * @brief Class that processes sensor data to position.
  */
-
 class Filter
 {
 

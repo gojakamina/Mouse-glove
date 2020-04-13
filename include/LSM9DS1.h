@@ -41,10 +41,14 @@ enum lsm9ds1_axis {
 		   ALL_AXIS
 };
 
+
+/**
+ * @brief Sensor data callback.
+ **/
 class LSM9DS1callback {
 public:
         /**
-         * Called after a sample has arrived.
+         * @brief Called after a sample has arrived.
          **/
         virtual void hasSample(float gx,
 			       float gy,
@@ -57,6 +61,9 @@ public:
 			       float mz) = 0;
 };
 
+/**
+ * Class to enable sensor readings in the project.
+ **/
 class LSM9DS1 : public CppTimer
 {
 public:
