@@ -140,11 +140,11 @@ int main(int argc, char *argv[]) {
 
     pthread_t click;
     pthread_t Topleftmove;
-    //pthread_t move;
+    pthread_t move;
     
     pthread_create(&click,NULL,MouseClik,NULL);
     pthread_create(&Topleftmove,NULL,reset,NULL);
-    //pthread_create(&move,NULL,MouseMove,NULL);
+    pthread_create(&move,NULL,MouseMove,NULL);
     
     do {
 	sleep(1);
