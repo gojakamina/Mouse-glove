@@ -7,17 +7,17 @@ extern "C" {
 #include <wiringPi.h>
 #include "Mouse.h"
 
-void mouse_upL(void){
+void Mouse::mouse_upL(void){
 	xdo_mouse_up(x, CURRENTWINDOW, 1);
 	std::cout << "releaseL\n";
 }
 
-void mouse_upR(void){
+void Mouse::mouse_upR(void){
 	xdo_mouse_up(x, CURRENTWINDOW, 3);
 	std::cout << "releaseR\n";
 }
 
-void mouse_downL(void){
+void Mouse::mouse_downL(void){
 	//anti-shake
 	delay(20);
 	if(digitalRead(Left_Key_down)){
@@ -26,7 +26,7 @@ void mouse_downL(void){
 	}
 }
 
-void mouse_downR(void){
+void Mouse::mouse_downR(void){
 	//anti-shake
 	delay(20);
 	if(digitalRead(Right_Key_down)){

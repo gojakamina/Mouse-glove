@@ -50,10 +50,10 @@ void *MouseClik(void *args){
 	pinMode(Right_Key_up,INPUT);
 
 	//setup interrupte
-	wiringPiISR (Left_Key_up, INT_EDGE_FALLING, &mouse_upL);
-	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &mouse_downL);
-	wiringPiISR (Right_Key_up, INT_EDGE_FALLING, &mouse_upR);
-	wiringPiISR (Right_Key_down, INT_EDGE_RISING, &mouse_downR);
+	wiringPiISR (Left_Key_up, INT_EDGE_FALLING, &Mouse::mouse_upL);
+	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &Mouse::mouse_downL);
+	wiringPiISR (Right_Key_up, INT_EDGE_FALLING, &Mouse::mouse_upR);
+	wiringPiISR (Right_Key_down, INT_EDGE_RISING, &Mouse::mouse_downR);
 	return 0;
 }
 
@@ -140,11 +140,11 @@ int main(int argc, char *argv[]) {
 
     pthread_t click;
     pthread_t Topleftmove;
-    pthread_t move;
+    //pthread_t move;
     
     pthread_create(&click,NULL,MouseClik,NULL);
     pthread_create(&Topleftmove,NULL,reset,NULL);
-    pthread_create(&move,NULL,MouseMove,NULL);
+    //pthread_create(&move,NULL,MouseMove,NULL);
     
     do {
 	sleep(1);

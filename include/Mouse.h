@@ -5,6 +5,10 @@ extern "C" {
 #include <xdo.h>
 }
 
+/**
+ * The mouse event functions called by interrupt.
+ */
+
 #define Left_Key_down  17 //PIN11
 #define Left_Key_up    18 //PIN12
 #define Right_Key_down 22 //PIN15
@@ -14,16 +18,24 @@ extern "C" {
 
 static xdo_t * x = xdo_new(NULL);
 
-/** @brief release mouse Left bottum */
-void mouse_upL(void);
+class Mouse {
+	
+	public:
+	
+	Mouse();
+	
+	/** @brief release mouse Left bottum */
+	static void mouse_upL(void);
 
-/** @brief release mouse right bottum */
-void mouse_upR(void);
+	/** @brief release mouse right bottum */
+	static void mouse_upR(void);
 
-/** @brief press mouse Left bottum */
-void mouse_downL(void);
+	/** @brief press mouse Left bottum (with anti-shake)*/
+	static void mouse_downL(void);
 
-/** @brief press mouse right bottum */
-void mouse_downR(void);
+	/** @brief press mouse right bottum (with anti-shake)*/
+	static void mouse_downR(void);
+
+};
 
 #endif
