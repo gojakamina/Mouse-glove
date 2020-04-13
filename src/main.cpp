@@ -50,10 +50,10 @@ void *MouseClik(void *args){
 	pinMode(Right_Key_up,INPUT);
 
 	//setup interrupte
-	wiringPiISR (Left_Key_up, INT_EDGE_FALLING, &Mouse::mouse_upL);
-	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &Mouse::mouse_downL);
-	wiringPiISR (Right_Key_up, INT_EDGE_FALLING, &Mouse::mouse_upR);
-	wiringPiISR (Right_Key_down, INT_EDGE_RISING, &Mouse::mouse_downR);
+	wiringPiISR (Left_Key_up, INT_EDGE_FALLING, &mouse_upL);
+	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &mouse_downL);
+	wiringPiISR (Right_Key_up, INT_EDGE_FALLING, &mouse_upR);
+	wiringPiISR (Right_Key_down, INT_EDGE_RISING, &mouse_downR);
 	return 0;
 }
 
@@ -67,7 +67,10 @@ void *reset(void *args){
 	return 0;
 }
 
-class LSM9DS1printCallback : public LSM9DS1callback {
+/**
+ * @brief Position data callback.
+ **/
+class LSM9DS1PosDataCallback : public LSM9DS1callback {
 	virtual void hasSample(float gx,
 			       float gy,
 			       float gz,
@@ -101,12 +104,10 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 		currPosZ = filter.integrate(prevPosZ, currVelZ, prevVelZ);
 		currPosY = filter.integrate(prevPosY, currVelY, prevVelY);
 
-		// print to check sensor data
-		printf("Acc, vel & pos: %f, %f, %f, %f, %f, %f \n", currAccZ, currVelZ, currPosZ*conv, currAccY, currVelY, currPosY*conv);
-
-		//xdo_move_mouse(x, currPosY*conv*dpi*100, currPosY*conv*dpi*100,0);
 		//move mouse
-
+		xdo_move_mouse(x, currPosY*conv*dpi*100, currPosY*conv*dpi*100,0);
+		
+		// set previous data to current
 		prevAccZ = currAccZ;
 		prevAccY = currAccY;
 
@@ -121,7 +122,7 @@ class LSM9DS1printCallback : public LSM9DS1callback {
 
 void *MouseMove(void *args){    
     LSM9DS1 imu(IMU_MODE_I2C, 0x6b, 0x1e);
-    LSM9DS1printCallback callback;
+    LSM9DS1PosDataCallback callback;
     imu.setCallback(&callback);
     imu.begin();
 

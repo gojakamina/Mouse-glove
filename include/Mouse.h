@@ -33,25 +33,28 @@ class Mouse {
 	
 	public:
 	
+	/**
+	 * @brief The constructor.
+	 */
 	Mouse();
 	
 	/**
-	 * @brief release mouse Left bottum.
+	 * @brief release mouse Left bottom.
 	 */
 	static void mouse_upL(void);
 
 	/**
-	 * @brief release mouse right bottum.
+	 * @brief release mouse right bottom.
 	 */
 	static void mouse_upR(void);
 
 	/**
-	 * @brief press mouse Left bottum (with anti-shake).
+	 * @brief press mouse Left bottom (with anti-shake).
 	 */
 	static void mouse_downL(void);
 
 	/**
-	 * @brief press mouse right bottum (with anti-shake).
+	 * @brief press mouse right bottom (with anti-shake).
 	 */
 	static void mouse_downR(void);
 

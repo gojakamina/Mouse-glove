@@ -180,80 +180,80 @@ enum fifoMode_type
 struct gyroSettings
 {
 	// Gyroscope settings:
- 	/**
-     * @brief Enables readings.
-     **/
+        /**
+         * @brief Enables readings.
+         **/
 	uint8_t enabled;
 	
-	 /**
-     * @brief Sets scale.
-     **/
+	/**
+         * @brief Sets scale.
+         **/
 	uint16_t scale;	// Changed this to 16-bit
 	
-    /**
-     * @brief Sets sampling rate of readings.
-     **/
+        /**
+         * @brief Sets sampling rate of readings.
+         **/
 	uint8_t sampleRate;
 	
 	// New gyro stuff:
 	/**
-     * @brief Sets bandwidth of readings.
-     **/
+	 * @brief Sets bandwidth of readings.
+	 **/
 	uint8_t bandwidth;
 	
 	/**
-     * @brief Enables low power.
-     **/
+	 * @brief Enables low power.
+         **/
 	uint8_t lowPowerEnable;
 	
 	/**
-     * @brief Enables high pass filter.
-     **/
+	 * @brief Enables high pass filter.
+	 **/
 	uint8_t HPFEnable;
 	
 	/**
-     * @brief Sets high pass filter cutoff frequency.
-     **/
+         * @brief Sets high pass filter cutoff frequency.
+         **/
 	uint8_t HPFCutoff;
 	
 	/**
-     * @brief Flips x readings.
-     **/
+         * @brief Flips x readings.
+         **/
 	uint8_t flipX;
 	
 	/**
-     * @brief Flips y readings.
-     **/
+         * @brief Flips y readings.
+         **/
 	uint8_t flipY;
 	
 	/**
-     * @brief Flips z readings.
-     **/
+         * @brief Flips z readings.
+         **/
 	uint8_t flipZ;
 	
 	/**
-     * @brief Sets the gyro orientation.
-     **/
+         * @brief Sets the gyro orientation.
+         **/
 	uint8_t orientation;
 	
 	/**
-     * @brief Enables x-readings.
-     **/
+         * @brief Enables x-readings.
+         **/
 	uint8_t enableX;
 	
 	/**
-     * @brief Enables y-readings.
-     **/
+         * @brief Enables y-readings.
+         **/
 	uint8_t enableY;
 	
 	/**
-     * @brief Enables z-readings.
-     **/
+         * @brief Enables z-readings.
+         **/
 	uint8_t enableZ;
 	
 	/**
-     * @brief Enables latch interrupt.
-     **/
+         * @brief Enables latch interrupt.
+         **/
 	uint8_t latchInterrupt;
 };
 
@@ -262,17 +262,17 @@ struct gyroSettings
  **/
 struct deviceSettings
 {
-	/**
+     /**
      * @brief Sets common interface.
      **/
     uint8_t commInterface; // Can be I2C, SPI 4-wire or SPI 3-wire
     
-	/**
+     /**
      * @brief Sets address of I2C or SPI CS pin.
      **/
     uint8_t agAddress;	// I2C address or SPI CS pin
     
-	/**
+    /**
      * @brief Sets address of I2C or SPI CS pin.
      **/
 	uint8_t mAddress;	// I2C address or SPI CS pin
@@ -284,7 +284,7 @@ struct deviceSettings
 struct accelSettings
 {
 	// Accelerometer settings:
-	/**
+    /**
      * @brief Enables readings.
      **/
     uint8_t enabled;
@@ -301,34 +301,34 @@ struct accelSettings
     
     
 	// New accel stuff:
-	/**
-     * @brief Enables x-readings.
-     **/
+       /**
+        * @brief Enables x-readings.
+        **/
 	uint8_t enableX;
 	
-	/**
-     * @brief Enables y-readings.
-     **/
+       /**
+        * @brief Enables y-readings.
+        **/
 	uint8_t enableY;
 	
-	/**
-     * @brief Enables z-readings.
-     **/
+       /**
+        * @brief Enables z-readings.
+        **/
 	uint8_t enableZ;
 	
 	/**
-     * @brief Sets bandwidth of readings.
-     **/
+         * @brief Sets bandwidth of readings.
+         **/
 	int8_t  bandwidth;
 	
 	/**
-     * @brief Enables high resolution.
-     **/
+         * @brief Enables high resolution.
+         **/
 	uint8_t highResEnable;
 	
 	/**
-     * @brief Enables high resolution in bandwidth.
-     **/
+         * @brief Enables high resolution in bandwidth.
+         **/
 	uint8_t highResBandwidth;
 };
 
@@ -338,8 +338,8 @@ struct accelSettings
  **/
 struct magSettings
 {
-	// Magnetometer settings:
-	/**
+    // Magnetometer settings:
+    /**
      * @brief Enables readings.
      **/
     uint8_t enabled;
@@ -356,29 +356,29 @@ struct magSettings
     
 	// New mag stuff:
 	
-	 /**
-     * @brief Enables temperature compensation.
-     **/
+	/**
+         * @brief Enables temperature compensation.
+         **/
 	uint8_t tempCompensationEnable;
 	
-	 /**
-     * @brief Sets performance of magnetometer for x and y.
-     **/
+	/**
+         * @brief Sets performance of magnetometer for x and y.
+         **/
 	uint8_t XYPerformance;
 	
-	 /**
-     * @brief Sets performance of magnetometer for z.
-     **/
+	/**
+         * @brief Sets performance of magnetometer for z.
+         **/
 	uint8_t ZPerformance;
 	
-	 /**
-     * @brief Enables low power.
-     **/
+	/**
+         * @brief Enables low power.
+         **/
 	uint8_t lowPowerEnable;
 	
-	 /**
-     * @brief Sets the operating mode.
-     **/
+	/**
+         * @brief Sets the operating mode.
+         **/
 	uint8_t operatingMode;
 };
 
@@ -388,8 +388,8 @@ struct magSettings
  **/
 struct temperatureSettings
 {
-	// Temperature settings
-	/**
+    // Temperature settings
+    /**
      * @brief Enables readings.
      **/
     uint8_t enabled;
@@ -402,28 +402,28 @@ struct temperatureSettings
 struct IMUSettings
 {
 	/**
-     * @brief Sets device.
-     **/
+         * @brief Sets device.
+         **/
 	deviceSettings device;
 	
 	/**
-     * @brief Sets gyroscope settings.
-     **/
+         * @brief Sets gyroscope settings.
+         **/
 	gyroSettings gyro;
 	
 	/**
-     * @brief Sets accelerometer settings.
-     **/
+         * @brief Sets accelerometer settings.
+         **/
 	accelSettings accel;
 	
 	/**
-     * @brief Sets magnetometer settings.
-     **/
+         * @brief Sets magnetometer settings.
+         **/
 	magSettings mag;
 	
 	/**
-     * @brief Sets temperature settings.
-     **/
+         * @brief Sets temperature settings.
+         **/
 	temperatureSettings temp;
 };
 
