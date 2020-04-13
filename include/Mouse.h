@@ -6,8 +6,8 @@ extern "C" {
 }
 
 /**
- * The mouse event functions called by interrupt.
- */
+ * @brief The class of mouse event including static functions called by interrupt.
+ **/
 
 #define Left_Key_down  17 //PIN11
 #define Left_Key_up    18 //PIN12
@@ -24,16 +24,24 @@ class Mouse {
 	
 	Mouse();
 	
-	/** @brief release mouse Left bottum */
+	/**
+	 * @brief release mouse Left bottum
+	 */
 	static void mouse_upL(void);
 
-	/** @brief release mouse right bottum */
+	/**
+	 * @brief release mouse right bottum 
+	 **/
 	static void mouse_upR(void);
 
-	/** @brief press mouse Left bottum (with anti-shake)*/
+	/**
+	 * @brief press mouse Left bottum (with anti-shake)
+	 **/
 	static void mouse_downL(void);
 
-	/** @brief press mouse right bottum (with anti-shake)*/
+	/**
+	 * @brief press mouse right bottum (with anti-shake)
+	 **/
 	static void mouse_downR(void);
 
 };
