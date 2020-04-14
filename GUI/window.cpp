@@ -1,4 +1,4 @@
-
+#include <unistd.h>
 #include <QtWidgets>
 #include "window.h"
 
