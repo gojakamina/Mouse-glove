@@ -1,0 +1,32 @@
+digraph "LSM9DS1::timerEvent"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node591 [label="LSM9DS1::timerEvent",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node591 -> Node592 [color="midnightblue",fontsize="10",style="solid"];
+  Node592 [label="LSM9DS1::readGyro",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#a56e9710cb538a4c7f7ab94c2ca256ce9",tooltip="Reads the gyroscope output registers. "];
+  Node592 -> Node593 [color="midnightblue",fontsize="10",style="solid"];
+  Node593 [label="LSM9DS1::xgReadBytes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#ae0a9cbfd74b1f4676f091c2d8e491d77",tooltip="Reads a number of bytes – beginning at an address and incrementing from there – from the accelero..."];
+  Node593 -> Node594 [color="midnightblue",fontsize="10",style="solid"];
+  Node594 [label="LSM9DS1::I2CreadBytes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#adfc9a22290daddd7787e8023fa8f12cc",tooltip="Reads a series of bytes, starting at a register via SPI. "];
+  Node593 -> Node595 [color="midnightblue",fontsize="10",style="solid"];
+  Node595 [label="LSM9DS1::SPIreadBytes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#a26c0f164454eba84e6486033b7061d11",tooltip="Initializes the SPI hardware. "];
+  Node591 -> Node596 [color="midnightblue",fontsize="10",style="solid"];
+  Node596 [label="LSM9DS1::readAccel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#a9953684a1ff652a7d3a4d91e72bccaa1",tooltip="Reads the accelerometer output registers. "];
+  Node596 -> Node593 [color="midnightblue",fontsize="10",style="solid"];
+  Node591 -> Node597 [color="midnightblue",fontsize="10",style="solid"];
+  Node597 [label="LSM9DS1::readMag",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#ae127cf75aa5f3c5421e49363795dcd38",tooltip="Reads the magnetometer output registers. "];
+  Node597 -> Node598 [color="midnightblue",fontsize="10",style="solid"];
+  Node598 [label="LSM9DS1::mReadBytes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#acfdf9862cad1e66c9fb61a17bfbe7477",tooltip="Reads a number of bytes – beginning at an address and incrementing from there – from the gyroscop..."];
+  Node598 -> Node594 [color="midnightblue",fontsize="10",style="solid"];
+  Node598 -> Node595 [color="midnightblue",fontsize="10",style="solid"];
+  Node591 -> Node599 [color="midnightblue",fontsize="10",style="solid"];
+  Node599 [label="LSM9DS1callback::hasSample",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1callback.html#a6efb40eeb27fbb5fd0ffbdf2dbbdf326",tooltip="Called after a sample has arrived. "];
+  Node591 -> Node600 [color="midnightblue",fontsize="10",style="solid"];
+  Node600 [label="LSM9DS1::calcGyro",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#a76707323565bc4170ea8e27a932c95e4",tooltip="Converts from RAW signed 16-bit value to degrees per second. "];
+  Node591 -> Node601 [color="midnightblue",fontsize="10",style="solid"];
+  Node601 [label="LSM9DS1::calcAccel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#a54e2a7888b67b47cf0dd986c5b91a3c5",tooltip="Converts from RAW signed 16-bit value to gravity (g&#39;s). "];
+  Node591 -> Node602 [color="midnightblue",fontsize="10",style="solid"];
+  Node602 [label="LSM9DS1::calcMag",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#a7d0b0740497b1a10cd3e46a282a143ec",tooltip="Converts from RAW signed 16-bit value to Gauss (Gs). "];
+}

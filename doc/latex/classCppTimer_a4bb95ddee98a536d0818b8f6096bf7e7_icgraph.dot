@@ -1,0 +1,15 @@
+digraph "CppTimer::stop"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node12 [label="CppTimer::stop",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="CppTimer::~CppTimer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCppTimer.html#a2942aab831713273a76218048fe61b16",tooltip="The destructor. "];
+  Node12 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="LSM9DS1::end",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#ae1948644d70a0356f3da4949023afb31",tooltip="Ends a possible thread in the background. "];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="MouseMove",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$src_2main_8cpp.html#a4d57cba32902e2d9565e64bbfc3362a0"];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$src_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97"];
+}
