@@ -56,6 +56,6 @@ cd bin
 ./demo
 ```
 
-[Documentation] (https://gojakamina.github.io/Mouse-glove/)
+[Documentation](https://gojakamina.github.io/Mouse-glove/)
 
 [Follow us on twitter](https://twitter.com/glove_mouse)
