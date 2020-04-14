@@ -16,7 +16,7 @@ add_library(lsm9ds1 LSM9DS1.cpp)
 add_library(Filter Filter.cpp)
 
 add_library(Mouse Mouse.cpp)
-
+#creat libray "mouse" based on "cmd_mousemove_relative.cpp"
 
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 #add directory "../lib" as the path of libries need to be linked.

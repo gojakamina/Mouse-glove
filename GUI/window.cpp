@@ -79,7 +79,7 @@ void Window::openWindow() {
 
 
 void Window::startExec() {
-   // write code here to link it to the main of the project.
+   // execl("/address/main", "main", NULL);
    // uncomment line 41 once you're done.
 }
 
