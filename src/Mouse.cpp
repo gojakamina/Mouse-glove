@@ -20,7 +20,7 @@ void Mouse::mouse_upR(void){
 void Mouse::mouse_downL(void){
 	//anti-shake
 	delay(20);
-	if(digitalRead(Left_Key_down)){
+	if(digitalRead(Left_Key_down)==LOW){
 		xdo_mouse_down(x, CURRENTWINDOW, 1);
 		std::cout << "pressL\n";
 	}
@@ -29,7 +29,7 @@ void Mouse::mouse_downL(void){
 void Mouse::mouse_downR(void){
 	//anti-shake
 	delay(20);
-	if(digitalRead(Right_Key_down)){
+	if(digitalRead(Right_Key_down)==LOW){
 		xdo_mouse_down(x, CURRENTWINDOW, 3);
 		std::cout << "pressR\n";
 	}
