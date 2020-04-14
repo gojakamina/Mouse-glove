@@ -7,7 +7,7 @@ class QLabel;
 class QPushButton;
 class QGridLayout;
 class QPalette;
-
+class QPixmap;
 
 /**
  * @brief Instruction window class.
@@ -31,7 +31,7 @@ class InstrWindow : public QWidget
    /** @brief Creates window. */
    void createWindow();
 
-
+   QLabel *instrPic; /**< Instruction picture. */
    QLabel *instrTxt; /**< Instruction text. */
    QPushButton *okButton; /**< Ok button. */
 
