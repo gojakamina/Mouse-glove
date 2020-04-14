@@ -39,21 +39,26 @@ void positionReset() {
 	std::cout << "reset\n";
 	digitalWrite(Motor, HIGH);
 	delay(500);
+	digitalWrite(Motor, LOW);
 }
 
 //thread for Click event
 void *MouseClik(void *args){
 	pinMode(Left_Key_down,INPUT);
 	pinMode(Left_Key_up,INPUT);
+	pullUpDnControl (Left_Key_down, PUD_UP);
+	pullUpDnControl (Left_Key_up, PUD_UP);
 
 	pinMode(Right_Key_down,INPUT);
 	pinMode(Right_Key_up,INPUT);
+	pullUpDnControl (Right_Key_down, PUD_UP);
+	pullUpDnControl (Left_Key_down, PUD_UP);
 
 	//setup interrupte
-	wiringPiISR (Left_Key_up, INT_EDGE_FALLING, &mouse_upL);
-	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &mouse_downL);
-	wiringPiISR (Right_Key_up, INT_EDGE_FALLING, &mouse_upR);
-	wiringPiISR (Right_Key_down, INT_EDGE_RISING, &mouse_downR);
+	wiringPiISR (Left_Key_up, INT_EDGE_FALLING, &mouse_downL);
+	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &mouse_upL);
+	wiringPiISR (Right_Key_up, INT_EDGE_FALLING, &mouse_downR);
+	wiringPiISR (Right_Key_down, INT_EDGE_RISING, &mouse_upR);
 	return 0;
 }
 
