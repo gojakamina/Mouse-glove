@@ -28,6 +28,8 @@ class Window : public QWidget
    /** The destructor. */
   ~Window(); // Destructor
 
+   // void timerEvent( QTimerEvent * );
+
 
  private:
 

@@ -11,14 +11,12 @@ Window::Window()
 
    QGridLayout *mainLayout = new QGridLayout;
 
-   // adding widhets to layout
    mainLayout->addWidget(instrTxt, 0, 0); // placement on row 0, column 0
    mainLayout->addWidget(buttons, 1, 0); // placement on row 1, column 0
 
    setLayout(mainLayout);
    setWindowTitle(tr("Mouse-glove"));
 
-   // for colouring window
    QPalette palette = this->palette();
    palette.setColor(QPalette::Window, QColor(255,250,250,255));
    this->setPalette(palette);
@@ -28,7 +26,6 @@ Window::Window()
 
 void Window::createTextBox() {
    
-   // creating instruction text
    instrTxt = new QLabel();
    instrTxt->setText(
    tr(" \n \
@@ -47,20 +44,19 @@ void Window::createButtons() {
    buttons  = new QGroupBox();
    QHBoxLayout *layout = new QHBoxLayout;
 
-   // creating buttons
    instrButton = new QPushButton(tr("Instructions"));
    startButton = new QPushButton(tr("Start"));
 
-   // adding buttons to button-layout
    layout->addWidget(instrButton);
    layout->addWidget(startButton);
 
-   // for colouring buttons
+
    QPalette pal1 = startButton->palette();
    pal1.setColor(QPalette::Button, QColor(255,250,250,255));
    startButton->setAutoFillBackground(true);
    startButton->setPalette(pal1);
    startButton->update();
+
 
    QPalette pal2 = instrButton->palette();
    pal2.setColor(QPalette::Button, QColor(255,250,250,255));
@@ -69,7 +65,6 @@ void Window::createButtons() {
    instrButton->update();
 
 
-   // actions when buttons are pressed
    connect(instrButton, &QPushButton::clicked, this, &Window::openWindow);
    // connect(startButton, &QPushButton::clicked, this, &Window::startExec);
  
@@ -87,6 +82,13 @@ void Window::startExec() {
    // execl("/address/main", "main", NULL);
    // uncomment line 41 once you're done.
 }
+
+/**
+	void Window::timerEvent( QTimerEvent *)
+{
+        This method is for timer events. not implemented yet
+}
+*/
 
 // Destructor
 Window::~Window()

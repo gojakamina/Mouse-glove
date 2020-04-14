@@ -1,9 +1,0 @@
-digraph "LSM9DS1::LSM9DS1"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node3 [label="LSM9DS1::LSM9DS1",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
-  Node4 [label="LSM9DS1::init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLSM9DS1.html#aa4f74e09e93c0133dc30545d4492849e",tooltip="Sets up gyro, accel, and mag settings to default. "];
-}
