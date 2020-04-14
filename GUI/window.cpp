@@ -79,7 +79,7 @@ void Window::openWindow() {
 
 
 void Window::startExec() {
-   // execl("/address/main", "main", __FILE__, __func__, (char*)NULL)
+   // execl("/address/main", "main", NULL);
    // uncomment line 41 once you're done.
 }
 
