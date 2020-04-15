@@ -46,19 +46,25 @@ void positionReset() {
 void *MouseClik(void *args){
 	pinMode(Left_Key_down,INPUT);
 	pinMode(Left_Key_up,INPUT);
-	pullUpDnControl (Left_Key_down, PUD_UP);
-	pullUpDnControl (Left_Key_up, PUD_UP);
+	
+
 
 	pinMode(Right_Key_down,INPUT);
 	pinMode(Right_Key_up,INPUT);
+	
+	//note: the pull-up set up doesn't work in raspberrypi 4B.
+	//for 4B please set up GPIO:17,18,22,23. to pull-up
+	//by "$ raspi-gpio set <GPIO> pu"
+	pullUpDnControl (Right_Key_down, PUD_UP);
 	pullUpDnControl (Right_Key_down, PUD_UP);
 	pullUpDnControl (Left_Key_down, PUD_UP);
+	pullUpDnControl (Left_Key_up, PUD_UP);
 
 	//setup interrupte
-	wiringPiISR (Left_Key_up, INT_EDGE_FALLING, &mouse_downL);
-	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &mouse_upL);
-	wiringPiISR (Right_Key_up, INT_EDGE_FALLING, &mouse_downR);
-	wiringPiISR (Right_Key_down, INT_EDGE_RISING, &mouse_upR);
+	wiringPiISR (Left_Key_up, INT_EDGE_FALLING, &Mouse::mouse_downL);
+	wiringPiISR (Left_Key_down, INT_EDGE_RISING, &Mouse::mouse_upL);
+	wiringPiISR (Right_Key_up, INT_EDGE_FALLING, &Mouse::mouse_downR);
+	wiringPiISR (Right_Key_down, INT_EDGE_RISING, &Mouse::mouse_upR);
 	return 0;
 }
 
@@ -146,11 +152,11 @@ int main(int argc, char *argv[]) {
 
     pthread_t click;
     pthread_t Topleftmove;
-    pthread_t move;
+    //pthread_t move;
     
     pthread_create(&click,NULL,MouseClik,NULL);
     pthread_create(&Topleftmove,NULL,reset,NULL);
-    pthread_create(&move,NULL,MouseMove,NULL);
+    //pthread_create(&move,NULL,MouseMove,NULL);
     
     do {
 	sleep(1);

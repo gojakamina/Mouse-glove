@@ -71,7 +71,7 @@ void Window::createButtons() {
 
    // actions when buttons are pressed
    connect(instrButton, &QPushButton::clicked, this, &Window::openWindow);
-   // connect(startButton, &QPushButton::clicked, this, &Window::startExec);
+   connect(startButton, &QPushButton::clicked, this, &Window::startExec);
  
    buttons->setLayout(layout);
 
@@ -84,8 +84,7 @@ void Window::openWindow() {
 
 
 void Window::startExec() {
-   // execl("/address/main", "main", NULL);
-   // uncomment line 41 once you're done.
+   execl("../bin/demo", "demo", NULL);
 }
 
 // Destructor
