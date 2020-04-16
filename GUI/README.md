@@ -12,5 +12,5 @@ make
 
 ### Test
 ```diff 
-startx ./GUI
+./GUI
 ```
