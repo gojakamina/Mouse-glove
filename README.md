@@ -10,7 +10,7 @@ In this project, the aim is to create a wireless glove that acts as a mouse. Use
 ### Members
 * Amina Gojak
 * Tong He: Hardware design & part of docmumentation.
-* Yuzhen Liu
+* Yuzhen Liu (mouse event code & media)
 
 
 ### Packages/Libraries installation
@@ -48,7 +48,11 @@ After finish Install
 cd build  
 make test
 ```
-
+Only run Mouse click and position reset threads:
+```diff
+cd bin
+./ClickTest
+```
 ### Run
 #### NOTE: Due to wiringPi cannot setup GPIO to pull up in RaspberryPi 4B. Execucate script is necessary.
 ```diff
