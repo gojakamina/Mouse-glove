@@ -9,9 +9,8 @@ In this project, the aim is to create a wireless glove that acts as a mouse. Use
 
 ### Members
 * Amina Gojak
-* Tong He
+* Tong He: Hardware design & part of docmumentation.
 * Yuzhen Liu
-
 
 
 ### Packages/Libraries installation
@@ -51,10 +50,22 @@ make test
 ```
 
 ### Run
+#### NOTE: Due to wiringPi cannot setup GPIO to pull up in RaspberryPi 4B. Execucate script is necessary.
+```diff
+//Set pullup:
+chmod +x PullUpSet.sh
+./PullUpSet.sh
+
+//Reset back to pulldown:
+chmod +x PullDnReset.sh
+./PullDnReset.sh
+```
+Without GUI
 ```diff
 cd bin  
 ./demo
 ```
+With GUI see in ./GUI/README.md
 
 [Documentation](https://gojakamina.github.io/Mouse-glove/)
 

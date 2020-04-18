@@ -6,11 +6,11 @@ apt-get install libqwt-qt5-dev
 
 ### Install 
 ```diff 
-qmake 
-GUI.pro make 
+qmake GUI.pro 
+make 
 ```
 
 ### Test
 ```diff 
-startx ./demo
+./GUI
 ```
