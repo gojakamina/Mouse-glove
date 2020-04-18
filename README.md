@@ -48,7 +48,11 @@ After finish Install
 cd build  
 make test
 ```
-
+Only run Mouse click and position reset threads:
+```diff
+cd bin
+./ClickTest
+```
 ### Run
 #### NOTE: Due to wiringPi cannot setup GPIO to pull up in RaspberryPi 4B. Execucate script is necessary.
 ```diff
