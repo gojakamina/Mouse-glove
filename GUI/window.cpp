@@ -84,7 +84,7 @@ void Window::openWindow() {
 
 
 void Window::startExec() {
-   execl("../bin/demo", "demo", NULL);
+   execl("../bin/main", "main", NULL);
 }
 
 // Destructor
