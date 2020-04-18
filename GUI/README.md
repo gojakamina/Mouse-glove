@@ -10,7 +10,7 @@ qmake GUI.pro
 make 
 ```
 
-### Test
+### Run with GUI
 ```diff 
 ./GUI
 ```
