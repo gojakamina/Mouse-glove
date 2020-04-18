@@ -22,7 +22,7 @@ extern "C" {
 #define reset_button   27
 
 ///Pin18 control motor (DigitalOut).
-#define Motor          24
+#define Motor          
 
 static xdo_t * x = xdo_new(NULL);
 
