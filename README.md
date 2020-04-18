@@ -67,7 +67,7 @@ chmod +x PullDnReset.sh
 Without GUI
 ```diff
 cd bin  
-./demo
+./main
 ```
 With GUI see in ./GUI/README.md
 
