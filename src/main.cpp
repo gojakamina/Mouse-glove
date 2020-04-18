@@ -38,7 +38,7 @@ void positionReset() {
 	xdo_move_mouse(x, 0, 0, 0);
 	std::cout << "reset\n";
 	digitalWrite(Motor, HIGH);
-	delay(500);
+	delay(100);
 	digitalWrite(Motor, LOW);
 }
 
