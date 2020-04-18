@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 #version requirement
 
-add_executable (demo main.cpp)
-#executable file named as "demo" compilied from "main.cpp"
+add_executable (main main.cpp)
+#executable file named as "main" compilied from "main.cpp"
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 #include the header directory "../include"
@@ -22,16 +22,16 @@ link_directories(${PROJECT_SOURCE_DIR}/lib)
 #add directory "../lib" as the path of libries need to be linked.
 #(lem9ds1 is under it)
 
-target_link_libraries(demo lsm9ds1 Mouse Filter rt)
-#Link library "lsn8ds1" to "demo"
+target_link_libraries(main lsm9ds1 Mouse Filter rt)
+#Link library "lsn8ds1" to "main"
 
 find_package(iir)
-target_link_libraries(demo iir::iir)
-#find and link library "iir" to "demo"
+target_link_libraries(main iir::iir)
+#find and link library "iir" to "main"
 
 find_package(Threads REQUIRED)
-target_link_libraries(demo Threads::Threads)
-#find and link library "threads" (pthread) to "demo"
+target_link_libraries(main Threads::Threads)
+#find and link library "threads" (pthread) to "main"
 
 include_directories(/usr/local/include)
 #include the header dircetory "/usr/local/include" 
@@ -41,5 +41,5 @@ link_directories(/usr/lib/arm-linux-gnueabihf /usr/lib/arm-linux-gnueabihf)
 #as the path of libries need to be linked.
 #(wiringPi and xdo are under it)
 
-target_link_libraries(demo xdo wiringPi)
-#link libraries "xdo" and "wiringPi" to "demo"
+target_link_libraries(main xdo wiringPi)
+#link libraries "xdo" and "wiringPi" to "main"
