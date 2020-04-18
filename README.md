@@ -10,7 +10,7 @@ In this project, the aim is to create a wireless glove that acts as a mouse. Use
 ### Members
 * Amina Gojak
 * Tong He: Hardware design & part of docmumentation.
-* Yuzhen Liu
+* Yuzhen Liu (mouse event code & media)
 
 
 ### Packages/Libraries installation
