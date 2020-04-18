@@ -14,3 +14,12 @@ ${Boost_SYSTEM_LIBRARY}
 ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
  )
 add_test (NAME MyTest COMMAND Test)
+
+find_package(Threads REQUIRED)
+add_executable (ClickTest Click_tst.cpp)
+target_link_libraries (ClickTest
+ Mouse
+ wiringPi
+ xdo
+ Threads::Threads
+)
