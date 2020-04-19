@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Mouse.h
+xdo.h
+-
+
+/home/pi/Mouse-glove/src/Mouse.cpp
+xdo.h
+-
+stdio.h
+-
+iostream
+-
+wiringPi.h
+-
+Mouse.h
+/home/pi/Mouse-glove/src/Mouse.h
+

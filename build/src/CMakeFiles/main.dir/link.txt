@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/main.dir/main.cpp.o  -o ../../bin/main -Wl,-rpath,/usr/local/lib liblsm9ds1.a libMouse.a libFilter.a -lrt /usr/local/lib/libiir.so.1.7.7 -lxdo -lwiringPi -lpthread 

@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblsm9ds1.a  CMakeFiles/lsm9ds1.dir/LSM9DS1.cpp.o
+/usr/bin/ranlib liblsm9ds1.a

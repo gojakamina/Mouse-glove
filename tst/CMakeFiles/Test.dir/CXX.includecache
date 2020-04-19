@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/Mouse-glove/tst/Filt_tst.cpp
+boost/test/unit_test.hpp
+-
+Filter.h
+/home/pi/Mouse-glove/tst/Filter.h
+

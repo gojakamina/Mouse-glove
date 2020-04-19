@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/ClickTest.dir/Click_tst.cpp.o  -o ../../bin/ClickTest ../src/libMouse.a -lwiringPi -lxdo -lpthread 

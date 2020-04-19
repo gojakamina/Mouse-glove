@@ -19,6 +19,7 @@ In this project, the aim is to create a wireless glove that acts as a mouse. Use
 WiringPi: $sudo apt-get install wiringpi 
 //For GPIO control and I2C  
 ```
+
 ```diff
 iir: https://github.com/berndporr/iir1 
 //For iir filter 
@@ -34,7 +35,9 @@ boost test : sudo apt-get install libboost-all-dev
 //For unit testing
 ```
 
+
 ### Install
+
 ```diff
 mkdir build
 cd build
@@ -43,6 +46,7 @@ make
 ```
 
 ### Test
+
 After finishing Installation
 ```diff
 cd build  
@@ -53,8 +57,11 @@ Only run Mouse click and position reset threads:
 cd bin
 ./ClickTest
 ```
+
 ### Run
+
 #### NOTE: Due to wiringPi being unable to setup GPIO to pull up in RaspberryPi 4B, execucate script is necessary.
+
 ```diff
 //Set pullup:
 chmod +x PullUpSet.sh
@@ -71,6 +78,5 @@ cd bin
 ```
 With GUI see in ./GUI/README.md
 
-[Documentation](https://gojakamina.github.io/Mouse-glove/)
 
 [Follow us on twitter](https://twitter.com/glove_mouse)

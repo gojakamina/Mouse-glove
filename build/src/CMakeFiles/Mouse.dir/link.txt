@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMouse.a  CMakeFiles/Mouse.dir/Mouse.cpp.o
+/usr/bin/ranlib libMouse.a
