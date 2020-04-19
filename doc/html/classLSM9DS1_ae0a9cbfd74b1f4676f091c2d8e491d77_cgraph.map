@@ -1,0 +1,4 @@
+<map id="LSM9DS1::xgReadBytes" name="LSM9DS1::xgReadBytes">
+<area shape="rect" id="node2" href="$classLSM9DS1.html#adfc9a22290daddd7787e8023fa8f12cc" title="Reads a series of bytes, starting at a register via SPI. " alt="" coords="223,5,393,32"/>
+<area shape="rect" id="node3" href="$classLSM9DS1.html#a26c0f164454eba84e6486033b7061d11" title="Initializes the SPI hardware. " alt="" coords="223,56,393,83"/>
+</map>

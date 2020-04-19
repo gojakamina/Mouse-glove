@@ -1,0 +1,7 @@
+<map id="IMUSettings" name="IMUSettings">
+<area shape="rect" id="node2" href="$structmagSettings.html" title="Settings for magnetometer. " alt="" coords="5,5,100,32"/>
+<area shape="rect" id="node3" href="$structgyroSettings.html" title="Settings for gyroscope. " alt="" coords="124,5,219,32"/>
+<area shape="rect" id="node4" href="$structdeviceSettings.html" title="Device settings. " alt="" coords="243,5,351,32"/>
+<area shape="rect" id="node5" href="$structaccelSettings.html" title="Settings for accelerometer. " alt="" coords="375,5,477,32"/>
+<area shape="rect" id="node6" href="$structtemperatureSettings.html" title="Settings for temperature. " alt="" coords="501,5,639,32"/>
+</map>

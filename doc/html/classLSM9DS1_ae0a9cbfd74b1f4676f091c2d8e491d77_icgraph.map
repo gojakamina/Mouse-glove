@@ -1,0 +1,8 @@
+<map id="LSM9DS1::xgReadBytes" name="LSM9DS1::xgReadBytes">
+<area shape="rect" id="node2" href="$classLSM9DS1.html#a9953684a1ff652a7d3a4d91e72bccaa1" title="Reads the accelerometer output registers. " alt="" coords="223,56,371,83"/>
+<area shape="rect" id="node6" href="$classLSM9DS1.html#aca21a51dc79a1287b97ed9c326e2080b" title="Reads the temperature output registers. " alt="" coords="223,107,371,133"/>
+<area shape="rect" id="node7" href="$classLSM9DS1.html#a56e9710cb538a4c7f7ab94c2ca256ce9" title="Reads the gyroscope output registers. " alt="" coords="225,5,368,32"/>
+<area shape="rect" id="node3" href="$classLSM9DS1.html#ad1fffc2bc5987339430d3b293da0bdd1" title="The timer event. " alt="" coords="419,5,572,32"/>
+<area shape="rect" id="node4" href="$classLSM9DS1.html#a97939cb15fcb7e33abcd6d3a9230d943" title="Calibrates the sensor data. " alt="" coords="426,56,565,83"/>
+<area shape="rect" id="node5" href="$classLSM9DS1.html#a8728e560c76bd120b3711af15a6ecbd6" title="Initializes the gyro, accelerometer and magnetometer. " alt="" coords="620,56,741,83"/>
+</map>

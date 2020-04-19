@@ -1,0 +1,10 @@
+<map id="LSM9DS1::setGyroScale" name="LSM9DS1::setGyroScale">
+<area shape="rect" id="node2" href="$classLSM9DS1.html#af7f9789df6f0178764c815a3380c202a" title="Reads a byte from a register in the accel/mag sensor. " alt="" coords="223,56,385,83"/>
+<area shape="rect" id="node6" href="$classLSM9DS1.html#a263eed4b52ad087a1195755c6ba49e62" title="Writes a byte to a register in the accel/mag sensor. " alt="" coords="223,107,385,133"/>
+<area shape="rect" id="node9" href="$classLSM9DS1.html#a303e0dd33e000579dc3917aecedb6e63" title="Calculates the resolution of the gyroscope. " alt="" coords="231,157,377,184"/>
+<area shape="rect" id="node3" href="$classLSM9DS1.html#a7fc046d4b335494331905fdeb5c81c9e" title="Reads a single byte from a register over I2C. " alt="" coords="435,5,598,32"/>
+<area shape="rect" id="node4" href="$classLSM9DS1.html#a6f0f50bb5e9b702d5a19c7441a3f9d8b" title="Reads a single byte from a register over SPI. " alt="" coords="435,56,599,83"/>
+<area shape="rect" id="node5" href="$classLSM9DS1.html#a26c0f164454eba84e6486033b7061d11" title="Initializes the SPI hardware. " alt="" coords="648,56,819,83"/>
+<area shape="rect" id="node7" href="$classLSM9DS1.html#a8e66108a002cc15ec4c0db0a608d20c6" title="Writes a byte out of I2C to a register in the device. " alt="" coords="433,107,600,133"/>
+<area shape="rect" id="node8" href="$classLSM9DS1.html#a83321c9d6ec50f6b9944907d2be482cd" title="Writes a byte out of SPI to a register in the device. " alt="" coords="433,157,600,184"/>
+</map>

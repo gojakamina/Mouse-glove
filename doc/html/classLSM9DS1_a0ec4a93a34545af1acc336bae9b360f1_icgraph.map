@@ -1,0 +1,4 @@
+<map id="LSM9DS1::setFIFO" name="LSM9DS1::setFIFO">
+<area shape="rect" id="node2" href="$classLSM9DS1.html#a97939cb15fcb7e33abcd6d3a9230d943" title="Calibrates the sensor data. " alt="" coords="192,5,331,32"/>
+<area shape="rect" id="node3" href="$classLSM9DS1.html#a8728e560c76bd120b3711af15a6ecbd6" title="Initializes the gyro, accelerometer and magnetometer. " alt="" coords="379,5,500,32"/>
+</map>

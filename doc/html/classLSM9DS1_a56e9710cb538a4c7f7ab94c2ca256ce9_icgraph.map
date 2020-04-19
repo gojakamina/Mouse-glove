@@ -1,0 +1,5 @@
+<map id="LSM9DS1::readGyro" name="LSM9DS1::readGyro">
+<area shape="rect" id="node2" href="$classLSM9DS1.html#ad1fffc2bc5987339430d3b293da0bdd1" title="The timer event. " alt="" coords="196,5,349,32"/>
+<area shape="rect" id="node3" href="$classLSM9DS1.html#a97939cb15fcb7e33abcd6d3a9230d943" title="Calibrates the sensor data. " alt="" coords="203,56,342,83"/>
+<area shape="rect" id="node4" href="$classLSM9DS1.html#a8728e560c76bd120b3711af15a6ecbd6" title="Initializes the gyro, accelerometer and magnetometer. " alt="" coords="397,56,519,83"/>
+</map>
