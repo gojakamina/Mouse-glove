@@ -71,6 +71,6 @@ cd bin
 ```
 With GUI see in ./GUI/README.md
 
-[Documentation](https://gojakamina.github.io/Mouse-glove/)
+[Documentation](https://gojakamina.github.io/Mouse-glove/index.html)
 
 [Follow us on twitter](https://twitter.com/glove_mouse)
