@@ -1,4 +1,0 @@
-/home/pi/Mouse-glove/tst/CMakeFiles/rebuild_cache.dir
-/home/pi/Mouse-glove/tst/CMakeFiles/edit_cache.dir
-/home/pi/Mouse-glove/tst/CMakeFiles/Test.dir
-/home/pi/Mouse-glove/tst/CMakeFiles/ClickTest.dir
