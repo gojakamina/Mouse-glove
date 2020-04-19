@@ -43,7 +43,7 @@ make
 ```
 
 ### Test
-After finish Install
+After finishing Installation
 ```diff
 cd build  
 make test
@@ -54,7 +54,7 @@ cd bin
 ./ClickTest
 ```
 ### Run
-#### NOTE: Due to wiringPi cannot setup GPIO to pull up in RaspberryPi 4B. Execucate script is necessary.
+#### NOTE: Due to wiringPi being unable to setup GPIO to pull up in RaspberryPi 4B, execucate script is necessary.
 ```diff
 //Set pullup:
 chmod +x PullUpSet.sh
