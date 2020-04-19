@@ -8,9 +8,9 @@ In this project, the aim is to create a wireless glove that acts as a mouse. Use
 ![image](https://github.com/gojakamina/Mouse-glove/raw/master/Schematic.png)
 
 ### Members
-* Amina Gojak
+* Amina Gojak: Sensor data processing, GUI & documentation.
 * Tong He: Hardware design & part of docmumentation.
-* Yuzhen Liu (mouse event code & media)
+* Yuzhen Liu: Mouse event code & media.
 
 
 ### Packages/Libraries installation
@@ -31,7 +31,7 @@ library for LSM9DS1 has been integrated in the project.
 
 ```diff
 boost test : sudo apt-get install libboost-all-dev 
-//For unite testing
+//For unit testing
 ```
 
 ### Install
