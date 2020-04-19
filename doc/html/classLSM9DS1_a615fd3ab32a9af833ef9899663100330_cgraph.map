@@ -1,5 +1,0 @@
-<map id="LSM9DS1::readMag" name="LSM9DS1::readMag">
-<area shape="rect" id="node2" href="$classLSM9DS1.html#acfdf9862cad1e66c9fb61a17bfbe7477" title="Reads a number of bytes – beginning at an address and incrementing from there – from the gyroscop..." alt="" coords="193,31,360,57"/>
-<area shape="rect" id="node3" href="$classLSM9DS1.html#adfc9a22290daddd7787e8023fa8f12cc" title="Reads a series of bytes, starting at a register via SPI. " alt="" coords="408,5,579,32"/>
-<area shape="rect" id="node4" href="$classLSM9DS1.html#a26c0f164454eba84e6486033b7061d11" title="Initializes the SPI hardware. " alt="" coords="408,56,579,83"/>
-</map>

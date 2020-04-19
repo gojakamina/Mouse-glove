@@ -1,5 +1,0 @@
-<map id="LSM9DS1::configMagThs" name="LSM9DS1::configMagThs">
-<area shape="rect" id="node2" href="$classLSM9DS1.html#afc171c924102c97fa1d88fa7f48bd167" title="Writes a byte to a register in the gyroscope. " alt="" coords="225,31,384,57"/>
-<area shape="rect" id="node3" href="$classLSM9DS1.html#a8e66108a002cc15ec4c0db0a608d20c6" title="Writes a byte out of I2C to a register in the device. " alt="" coords="432,5,599,32"/>
-<area shape="rect" id="node4" href="$classLSM9DS1.html#a83321c9d6ec50f6b9944907d2be482cd" title="Writes a byte out of SPI to a register in the device. " alt="" coords="432,56,599,83"/>
-</map>

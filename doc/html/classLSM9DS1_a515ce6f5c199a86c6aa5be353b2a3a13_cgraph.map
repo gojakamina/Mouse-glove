@@ -1,6 +1,0 @@
-<map id="LSM9DS1::accelAvailable" name="LSM9DS1::accelAvailable">
-<area shape="rect" id="node2" href="$classLSM9DS1.html#af7f9789df6f0178764c815a3380c202a" title="Reads a byte from a register in the accel/mag sensor. " alt="" coords="228,31,391,57"/>
-<area shape="rect" id="node3" href="$classLSM9DS1.html#a7fc046d4b335494331905fdeb5c81c9e" title="Reads a single byte from a register over I2C. " alt="" coords="439,5,602,32"/>
-<area shape="rect" id="node4" href="$classLSM9DS1.html#a6f0f50bb5e9b702d5a19c7441a3f9d8b" title="Reads a single byte from a register over SPI. " alt="" coords="439,56,603,83"/>
-<area shape="rect" id="node5" href="$classLSM9DS1.html#a26c0f164454eba84e6486033b7061d11" title="Initializes the SPI hardware. " alt="" coords="651,56,821,83"/>
-</map>
