@@ -4,7 +4,7 @@ include_directories (${PROJECT_SOURCE_DIR}/include
  )
 add_definitions (-DBOOST_TEST_DYN_LINK)
 find_package(iir)
-add_executable (Test test.cpp)
+add_executable (Test Filt_tst.cpp)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 target_link_libraries (Test
  iir
@@ -13,7 +13,7 @@ target_link_libraries (Test
 ${Boost_SYSTEM_LIBRARY}
 ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
  )
-add_test (NAME MyTest COMMAND Test)
+add_test (NAME FilterTest COMMAND Test)
 
 find_package(Threads REQUIRED)
 add_executable (ClickTest Click_tst.cpp)
