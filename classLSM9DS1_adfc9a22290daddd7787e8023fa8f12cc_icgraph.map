@@ -1,0 +1,12 @@
+<map id="LSM9DS1::I2CreadBytes" name="LSM9DS1::I2CreadBytes">
+<area shape="rect" id="node2" href="$classLSM9DS1.html#ae0a9cbfd74b1f4676f091c2d8e491d77" title="Reads a number of bytes – beginning at an address and incrementing from there – from the accelero..." alt="" coords="224,69,393,96"/>
+<area shape="rect" id="node9" href="$classLSM9DS1.html#acfdf9862cad1e66c9fb61a17bfbe7477" title="Reads a number of bytes – beginning at an address and incrementing from there – from the gyroscop..." alt="" coords="225,132,392,159"/>
+<area shape="rect" id="node3" href="$classLSM9DS1.html#a9953684a1ff652a7d3a4d91e72bccaa1" title="Reads the accelerometer output registers. " alt="" coords="441,5,589,32"/>
+<area shape="rect" id="node7" href="$classLSM9DS1.html#aca21a51dc79a1287b97ed9c326e2080b" title="Reads the temperature output registers. " alt="" coords="441,107,589,133"/>
+<area shape="rect" id="node8" href="$classLSM9DS1.html#a56e9710cb538a4c7f7ab94c2ca256ce9" title="Reads the gyroscope output registers. " alt="" coords="444,56,587,83"/>
+<area shape="rect" id="node4" href="$classLSM9DS1.html#ad1fffc2bc5987339430d3b293da0bdd1" title="The timer event. " alt="" coords="643,56,796,83"/>
+<area shape="rect" id="node5" href="$classLSM9DS1.html#a97939cb15fcb7e33abcd6d3a9230d943" title="Calibrates the sensor data. " alt="" coords="650,5,789,32"/>
+<area shape="rect" id="node6" href="$classLSM9DS1.html#a8728e560c76bd120b3711af15a6ecbd6" title="Initializes the gyro, accelerometer and magnetometer. " alt="" coords="849,5,971,32"/>
+<area shape="rect" id="node10" href="$classLSM9DS1.html#ae127cf75aa5f3c5421e49363795dcd38" title="Reads the magnetometer output registers. " alt="" coords="445,157,585,184"/>
+<area shape="rect" id="node11" href="$classLSM9DS1.html#afb45f0bcbcbeb15d4bd1a28821b24d14" title="Calibrates the magnetometer data. " alt="" coords="637,157,801,184"/>
+</map>

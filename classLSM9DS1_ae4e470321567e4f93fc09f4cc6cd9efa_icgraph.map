@@ -1,0 +1,8 @@
+<map id="LSM9DS1::mReadByte" name="LSM9DS1::mReadByte">
+<area shape="rect" id="node2" href="$classLSM9DS1.html#a8728e560c76bd120b3711af15a6ecbd6" title="Initializes the gyro, accelerometer and magnetometer. " alt="" coords="235,5,357,32"/>
+<area shape="rect" id="node3" href="$classLSM9DS1.html#a85afd29e95bead7b3f0083a9a235d1df" title="Polls the temperature status register to check if new data is available. " alt="" coords="212,56,380,83"/>
+<area shape="rect" id="node5" href="$classLSM9DS1.html#ad7604159a07b0d088cdfb6ba4a0093b0" title="Sets the full&#45;scale range of the magnetometer. " alt="" coords="213,107,379,133"/>
+<area shape="rect" id="node6" href="$classLSM9DS1.html#a8bc672fba680edc468a643fd58046b41" title="Sets the output data rate and bandwidth of the magnetometer. " alt="" coords="215,157,377,184"/>
+<area shape="rect" id="node7" href="$classLSM9DS1.html#a2bc92a37db982059b89e0a06e7d05a95" title="Gets contents of magnetometer interrupt source register. " alt="" coords="212,208,380,235"/>
+<area shape="rect" id="node4" href="$classLSM9DS1.html#afb45f0bcbcbeb15d4bd1a28821b24d14" title="Calibrates the magnetometer data. " alt="" coords="428,56,592,83"/>
+</map>

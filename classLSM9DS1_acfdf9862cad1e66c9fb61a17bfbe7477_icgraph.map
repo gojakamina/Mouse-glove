@@ -1,0 +1,5 @@
+<map id="LSM9DS1::mReadBytes" name="LSM9DS1::mReadBytes">
+<area shape="rect" id="node2" href="$classLSM9DS1.html#ae127cf75aa5f3c5421e49363795dcd38" title="Reads the magnetometer output registers. " alt="" coords="220,31,360,57"/>
+<area shape="rect" id="node3" href="$classLSM9DS1.html#ad1fffc2bc5987339430d3b293da0bdd1" title="The timer event. " alt="" coords="413,5,567,32"/>
+<area shape="rect" id="node4" href="$classLSM9DS1.html#afb45f0bcbcbeb15d4bd1a28821b24d14" title="Calibrates the magnetometer data. " alt="" coords="408,56,572,83"/>
+</map>

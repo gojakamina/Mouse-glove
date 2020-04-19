@@ -1,0 +1,5 @@
+<map id="LSM9DS1::readTemp" name="LSM9DS1::readTemp">
+<area shape="rect" id="node2" href="$classLSM9DS1.html#ae0a9cbfd74b1f4676f091c2d8e491d77" title="Reads a number of bytes – beginning at an address and incrementing from there – from the accelero..." alt="" coords="201,31,371,57"/>
+<area shape="rect" id="node3" href="$classLSM9DS1.html#adfc9a22290daddd7787e8023fa8f12cc" title="Reads a series of bytes, starting at a register via SPI. " alt="" coords="419,5,589,32"/>
+<area shape="rect" id="node4" href="$classLSM9DS1.html#a26c0f164454eba84e6486033b7061d11" title="Initializes the SPI hardware. " alt="" coords="419,56,589,83"/>
+</map>
