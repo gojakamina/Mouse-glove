@@ -71,6 +71,6 @@ cd bin
 ```
 With GUI see in ./GUI/README.md
 
-[Documentation](https://gojakamina.github.io/Mouse-glove/){:target="_blank"}
+<a href="https://gojakamina.github.io/Mouse-glove/" target="_blank">Documentation</a>
 
-[Follow us on twitter](https://twitter.com/glove_mouse){:target="_blank"}
+<a href="https://twitter.com/glove_mouse" target="_blank">Follow us on twitter</a>
